@@ -25,6 +25,8 @@ function key(d: Doc, file: string) {
   const lineVatPrinted = d.layout === 'classic';
   // Statements print a net amount per transaction, with no quantity or unit-price columns.
   const qtyPrinted = d.layout !== 'statement';
+  // The modern layout has no order-reference field, so a PO in the data is not on the document.
+  const poPrinted = d.layout !== 'modern';
   return {
     id: d.id,
     file,
@@ -39,7 +41,7 @@ function key(d: Doc, file: string) {
       invoice_number: d.number,
       invoice_date: d.date,
       due_date: d.due,
-      po_number: d.po,
+      po_number: poPrinted ? d.po : null,
       currency: d.currency,
       line_items: d.lines.map((l, i) => ({ description: l.description, quantity: qtyPrinted ? l.qty : null, unit_price: qtyPrinted ? l.unit : null, vat_rate: lineVatPrinted ? l.vat : null, line_total: a.lineTotals[i]! })),
       net_total: a.net,

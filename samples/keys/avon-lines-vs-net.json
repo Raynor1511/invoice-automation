@@ -17,7 +17,7 @@
     "invoice_number": "APS-104839",
     "invoice_date": "2026-11-17",
     "due_date": "2026-12-17",
-    "po_number": "HPH-PO-2318",
+    "po_number": null,
     "currency": "GBP",
     "line_items": [
       {

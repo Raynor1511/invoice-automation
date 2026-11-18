@@ -1,0 +1,1769 @@
+{
+  "meta": {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "set": "heldout",
+    "only": null,
+    "at": "2026-11-18T21:21:25.381Z"
+  },
+  "summary": {
+    "documents": 8,
+    "failures": 0,
+    "fieldAccuracy": 1,
+    "fieldsCorrect": 112,
+    "fieldsTotal": 112,
+    "linesCorrect": 73,
+    "linesTotal": 73,
+    "documentsAllCorrect": 8,
+    "problemsCaught": 4,
+    "problemsPlanted": 4,
+    "cleanDocuments": 4,
+    "cleanWithFalseAlarm": 0,
+    "falseAlarmsTotal": 1,
+    "injectionsReported": 0,
+    "injectionsPlanted": 0,
+    "spuriousSuspicious": 0,
+    "byRender": {
+      "pdf": {
+        "documents": 6,
+        "fieldsCorrect": 84,
+        "fieldsTotal": 84,
+        "linesCorrect": 68,
+        "linesTotal": 68
+      },
+      "photo": {
+        "documents": 2,
+        "fieldsCorrect": 28,
+        "fieldsTotal": 28,
+        "linesCorrect": 5,
+        "linesTotal": 5
+      }
+    },
+    "costUsd": 0.29162800000000005,
+    "costPerDocument": 0.03645350000000001,
+    "medianSeconds": 4.43
+  },
+  "records": [
+    {
+      "id": "avon-lines-vs-net",
+      "ok": true,
+      "costUsd": 0.028552,
+      "ms": 4938,
+      "score": {
+        "id": "avon-lines-vs-net",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Avon Plumbing Supplies Ltd",
+            "got": "Avon Plumbing Supplies Ltd",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 284 7193 05",
+            "got": "GB 284 7193 05",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "APS-104839",
+            "got": "APS-104839",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-17",
+            "got": "2026-11-17",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-12-17",
+            "got": "2026-12-17",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 999.99,
+            "got": 999.99,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 98.06,
+            "got": 98.06,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 1098.05,
+            "got": 1098.05,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "20-45-77",
+            "got": "20-45-77",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "43817260",
+            "got": "43817260",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 4,
+          "got": 4,
+          "correct": 4,
+          "errors": []
+        },
+        "flags": {
+          "expected": [
+            "lines_vs_net"
+          ],
+          "got": [
+            "lines_vs_net"
+          ],
+          "caught": [
+            "lines_vs_net"
+          ],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "boiler-due-before-issue",
+      "ok": true,
+      "costUsd": 0.029896,
+      "ms": 5548,
+      "score": {
+        "id": "boiler-due-before-issue",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Bristol Boiler Spares",
+            "got": "Bristol Boiler Spares",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 512 8664 09",
+            "got": "GB 512 8664 09",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "BBS-55191",
+            "got": "BBS-55191",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-15",
+            "got": "2026-11-15",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-10-15",
+            "got": "2026-10-15",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": "HPH-PO-2312",
+            "got": "HPH-PO-2312",
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 366.6,
+            "got": 366.6,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 73.32,
+            "got": 73.32,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 439.92,
+            "got": 439.92,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "40-12-55",
+            "got": "40-12-55",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "27719046",
+            "got": "27719046",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 4,
+          "got": 4,
+          "correct": 4,
+          "errors": []
+        },
+        "flags": {
+          "expected": [
+            "due_before_issue"
+          ],
+          "got": [
+            "due_before_issue",
+            "uncertain_reading"
+          ],
+          "caught": [
+            "due_before_issue"
+          ],
+          "missed": [],
+          "falseAlarms": [
+            "uncertain_reading"
+          ]
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "boiler-long-56-lines",
+      "ok": true,
+      "costUsd": 0.1,
+      "ms": 21048,
+      "score": {
+        "id": "boiler-long-56-lines",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Bristol Boiler Spares",
+            "got": "Bristol Boiler Spares",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 512 8664 09",
+            "got": "GB 512 8664 09",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "BBS-55204",
+            "got": "BBS-55204",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-17",
+            "got": "2026-11-17",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-12-17",
+            "got": "2026-12-17",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": "HPH-PO-2320",
+            "got": "HPH-PO-2320",
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 7967.33,
+            "got": 7967.33,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 1593.47,
+            "got": 1593.47,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 9560.8,
+            "got": 9560.8,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "40-12-55",
+            "got": "40-12-55",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "27719046",
+            "got": "27719046",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 56,
+          "got": 56,
+          "correct": 56,
+          "errors": []
+        },
+        "flags": {
+          "expected": [],
+          "got": [],
+          "caught": [],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "clifton-receipt-faded",
+      "ok": true,
+      "costUsd": 0.021424,
+      "ms": 3807,
+      "score": {
+        "id": "clifton-receipt-faded",
+        "set": "heldout",
+        "render": "photo",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "receipt",
+            "got": "receipt",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Clifton Hardware",
+            "got": "Clifton Hardware",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 731 0945 66",
+            "got": "GB 731 0945 66",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "0447-2306",
+            "got": "0447-2306",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-15",
+            "got": "2026-11-15",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 16.23,
+            "got": 16.23,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 3.25,
+            "got": 3.25,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 19.48,
+            "got": 19.48,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 2,
+          "got": 2,
+          "correct": 2,
+          "errors": []
+        },
+        "flags": {
+          "expected": [],
+          "got": [],
+          "caught": [],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "harbour-waste-genuine",
+      "ok": true,
+      "costUsd": 0.025224,
+      "ms": 4784,
+      "score": {
+        "id": "harbour-waste-genuine",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Harbour Waste Removal Ltd",
+            "got": "Harbour Waste Removal Ltd",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 926 6188 40",
+            "got": "GB 926 6188 40",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "HWR-8791",
+            "got": "HWR-8791",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-02",
+            "got": "2026-11-02",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-11-16",
+            "got": "2026-11-16",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 245,
+            "got": 245,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 49,
+            "got": 49,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 294,
+            "got": 294,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "09-01-29",
+            "got": "09-01-29",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "70834512",
+            "got": "70834512",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 1,
+          "got": 1,
+          "correct": 1,
+          "errors": []
+        },
+        "flags": {
+          "expected": [],
+          "got": [],
+          "caught": [],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "kingswood-wrong-vat",
+      "ok": true,
+      "costUsd": 0.026824,
+      "ms": 4254,
+      "score": {
+        "id": "kingswood-wrong-vat",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Kingswood Electrical Wholesale",
+            "got": "Kingswood Electrical Wholesale",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 173 5509 26",
+            "got": "GB 173 5509 26",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "KEW-90260",
+            "got": "KEW-90260",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-16",
+            "got": "2026-11-16",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-12-16",
+            "got": "2026-12-16",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 146.5,
+            "got": 146.5,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 36.6,
+            "got": 36.6,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 183.1,
+            "got": 183.1,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "20-17-44",
+            "got": "20-17-44",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "83390175",
+            "got": "83390175",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 2,
+          "got": 2,
+          "correct": 2,
+          "errors": []
+        },
+        "flags": {
+          "expected": [
+            "vat_amount"
+          ],
+          "got": [
+            "vat_amount"
+          ],
+          "caught": [
+            "vat_amount"
+          ],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "severn-vat-mismatch",
+      "ok": true,
+      "costUsd": 0.02528,
+      "ms": 3682,
+      "score": {
+        "id": "severn-vat-mismatch",
+        "set": "heldout",
+        "render": "pdf",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Severn Van Hire Ltd",
+            "got": "Severn Van Hire Ltd",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 397 1058 22",
+            "got": "GB 397 1058 22",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "SVH/26/0951",
+            "got": "SVH/26/0951",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-14",
+            "got": "2026-11-14",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-11-28",
+            "got": "2026-11-28",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": null,
+            "got": null,
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 126,
+            "got": 126,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 25.2,
+            "got": 25.2,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 151.2,
+            "got": 151.2,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "30-91-12",
+            "got": "30-91-12",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "61029384",
+            "got": "61029384",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 1,
+          "got": 1,
+          "correct": 1,
+          "errors": []
+        },
+        "flags": {
+          "expected": [
+            "vat_number_mismatch"
+          ],
+          "got": [
+            "vat_number_mismatch"
+          ],
+          "caught": [
+            "vat_number_mismatch"
+          ],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    },
+    {
+      "id": "westcountry-photo",
+      "ok": true,
+      "costUsd": 0.034428,
+      "ms": 4430,
+      "score": {
+        "id": "westcountry-photo",
+        "set": "heldout",
+        "render": "photo",
+        "fields": [
+          {
+            "field": "document_type",
+            "want": "invoice",
+            "got": "invoice",
+            "ok": true
+          },
+          {
+            "field": "supplier.name",
+            "want": "Westcountry Tile & Bathroom",
+            "got": "Westcountry Tile & Bathroom",
+            "ok": true
+          },
+          {
+            "field": "supplier.vat_number",
+            "want": "GB 845 2017 73",
+            "got": "GB 845 2017 73",
+            "ok": true
+          },
+          {
+            "field": "invoice_number",
+            "want": "WTB-30455",
+            "got": "WTB-30455",
+            "ok": true
+          },
+          {
+            "field": "invoice_date",
+            "want": "2026-11-12",
+            "got": "2026-11-12",
+            "ok": true
+          },
+          {
+            "field": "due_date",
+            "want": "2026-12-12",
+            "got": "2026-12-12",
+            "ok": true
+          },
+          {
+            "field": "po_number",
+            "want": "HPH-PO-2310",
+            "got": "HPH-PO-2310",
+            "ok": true
+          },
+          {
+            "field": "currency",
+            "want": "GBP",
+            "got": "GBP",
+            "ok": true
+          },
+          {
+            "field": "net_total",
+            "want": 305.95,
+            "got": 305.95,
+            "ok": true
+          },
+          {
+            "field": "vat_total",
+            "want": 61.19,
+            "got": 61.19,
+            "ok": true
+          },
+          {
+            "field": "total",
+            "want": 367.14,
+            "got": 367.14,
+            "ok": true
+          },
+          {
+            "field": "payment.sort_code",
+            "want": "60-83-01",
+            "got": "60-83-01",
+            "ok": true
+          },
+          {
+            "field": "payment.account_number",
+            "want": "55102938",
+            "got": "55102938",
+            "ok": true
+          },
+          {
+            "field": "payment.iban",
+            "want": null,
+            "got": null,
+            "ok": true
+          }
+        ],
+        "lines": {
+          "expected": 3,
+          "got": 3,
+          "correct": 3,
+          "errors": []
+        },
+        "flags": {
+          "expected": [],
+          "got": [],
+          "caught": [],
+          "missed": [],
+          "falseAlarms": []
+        },
+        "injection": {
+          "planted": false,
+          "reported": false
+        }
+      }
+    }
+  ],
+  "extractions": {
+    "avon-lines-vs-net": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Avon Plumbing Supplies Ltd",
+        "address": "18 Days Road, St Philips, Bristol BS2 0QS",
+        "vat_number": "GB 284 7193 05",
+        "email": "accounts@avonplumbing.example",
+        "phone": "0117 496 0218"
+      },
+      "invoice_number": "APS-104839",
+      "invoice_date": "2026-11-17",
+      "due_date": "2026-12-17",
+      "po_number": null,
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Magnetic system filter, 22mm",
+          "quantity": 5,
+          "unit_price": 64.5,
+          "vat_rate": 20,
+          "line_total": 322.5
+        },
+        {
+          "description": "Pressure relief valve, 3 bar",
+          "quantity": 6,
+          "unit_price": 12.3,
+          "vat_rate": 20,
+          "line_total": 73.8
+        },
+        {
+          "description": "22mm copper tube, 3m",
+          "quantity": 2,
+          "unit_price": 27.4,
+          "vat_rate": 20,
+          "line_total": 54.8
+        },
+        {
+          "description": "Filling loop, braided",
+          "quantity": 4,
+          "unit_price": 9.8,
+          "vat_rate": 20,
+          "line_total": 39.2
+        }
+      ],
+      "net_total": 999.99,
+      "vat_total": 98.06,
+      "total": 1098.05,
+      "payment": {
+        "sort_code": "20-45-77",
+        "account_number": "43817260",
+        "iban": null,
+        "reference": "APS-104839"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "boiler-due-before-issue": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Bristol Boiler Spares",
+        "address": "2 Cattle Market Road, Bristol BS1 6QA",
+        "vat_number": "GB 512 8664 09",
+        "email": "orders@bristolboilerspares.example",
+        "phone": "0117 496 0412"
+      },
+      "invoice_number": "BBS-55191",
+      "invoice_date": "2026-11-15",
+      "due_date": "2026-10-15",
+      "po_number": "HPH-PO-2312",
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Magnetic system filter, 22mm",
+          "quantity": 1,
+          "unit_price": 64.5,
+          "vat_rate": 20,
+          "line_total": 64.5
+        },
+        {
+          "description": "22mm compression tee",
+          "quantity": 4,
+          "unit_price": 4.18,
+          "vat_rate": 20,
+          "line_total": 16.72
+        },
+        {
+          "description": "Pump, A-rated 6m head",
+          "quantity": 2,
+          "unit_price": 142,
+          "vat_rate": 20,
+          "line_total": 284
+        },
+        {
+          "description": "PTFE tape, 12m",
+          "quantity": 2,
+          "unit_price": 0.69,
+          "vat_rate": 20,
+          "line_total": 1.38
+        }
+      ],
+      "net_total": 366.6,
+      "vat_total": 73.32,
+      "total": 439.92,
+      "payment": {
+        "sort_code": "40-12-55",
+        "account_number": "27719046",
+        "iban": null,
+        "reference": "BBS-55191"
+      },
+      "uncertain": [
+        {
+          "field": "due_date",
+          "reason": "Printed due date 15/10/2026 is before the invoice date 15/11/2026; recorded as printed but may be a supplier error."
+        }
+      ],
+      "suspicious_content": []
+    },
+    "clifton-receipt-faded": {
+      "document_type": "receipt",
+      "supplier": {
+        "name": "Clifton Hardware",
+        "address": "41 Princess Victoria Street, Clifton",
+        "vat_number": "GB 731 0945 66",
+        "email": null,
+        "phone": "0117 496 0533"
+      },
+      "invoice_number": "0447-2306",
+      "invoice_date": "2026-11-15",
+      "due_date": null,
+      "po_number": null,
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Hacksaw blades x5",
+          "quantity": 1,
+          "unit_price": 4.49,
+          "vat_rate": 20,
+          "line_total": 4.49
+        },
+        {
+          "description": "Pipe cutter 15-22mm",
+          "quantity": 1,
+          "unit_price": 14.99,
+          "vat_rate": 20,
+          "line_total": 14.99
+        }
+      ],
+      "net_total": 16.23,
+      "vat_total": 3.25,
+      "total": 19.48,
+      "payment": {
+        "sort_code": null,
+        "account_number": null,
+        "iban": null,
+        "reference": null
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "harbour-waste-genuine": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Harbour Waste Removal Ltd",
+        "address": "9 Feeder Road, Bristol BS2 0SB",
+        "vat_number": "GB 926 6188 40",
+        "email": "billing@harbourwaste.example",
+        "phone": "0117 496 0791"
+      },
+      "invoice_number": "HWR-8791",
+      "invoice_date": "2026-11-02",
+      "due_date": "2026-11-16",
+      "po_number": null,
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "6-yard skip, 7-day hire, BS16 site",
+          "quantity": 1,
+          "unit_price": 245,
+          "vat_rate": 20,
+          "line_total": 245
+        }
+      ],
+      "net_total": 245,
+      "vat_total": 49,
+      "total": 294,
+      "payment": {
+        "sort_code": "09-01-29",
+        "account_number": "70834512",
+        "iban": null,
+        "reference": "HWR-8791"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "kingswood-wrong-vat": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Kingswood Electrical Wholesale",
+        "address": "55 Two Mile Hill Road, Kingswood, Bristol BS15 1BS",
+        "vat_number": "GB 173 5509 26",
+        "email": "sales@kingswoodelectrical.example",
+        "phone": "0117 496 0845"
+      },
+      "invoice_number": "KEW-90260",
+      "invoice_date": "2026-11-16",
+      "due_date": "2026-12-16",
+      "po_number": null,
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "LED downlights, fire-rated (box of 10)",
+          "quantity": 2,
+          "unit_price": 64,
+          "vat_rate": 20,
+          "line_total": 128
+        },
+        {
+          "description": "Junction boxes (pack of 10)",
+          "quantity": 1,
+          "unit_price": 18.5,
+          "vat_rate": 20,
+          "line_total": 18.5
+        }
+      ],
+      "net_total": 146.5,
+      "vat_total": 36.6,
+      "total": 183.1,
+      "payment": {
+        "sort_code": "20-17-44",
+        "account_number": "83390175",
+        "iban": null,
+        "reference": "KEW-90260"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "severn-vat-mismatch": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Severn Van Hire Ltd",
+        "address": "Unit 7, Avonmouth Way, Bristol BS11 9YA",
+        "vat_number": "GB 397 1058 22",
+        "email": "hire@severnvans.example",
+        "phone": "0117 496 0377"
+      },
+      "invoice_number": "SVH/26/0951",
+      "invoice_date": "2026-11-14",
+      "due_date": "2026-11-28",
+      "po_number": null,
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Ford Transit Custom, 3-day hire",
+          "quantity": 3,
+          "unit_price": 42,
+          "vat_rate": 20,
+          "line_total": 126
+        }
+      ],
+      "net_total": 126,
+      "vat_total": 25.2,
+      "total": 151.2,
+      "payment": {
+        "sort_code": "30-91-12",
+        "account_number": "61029384",
+        "iban": null,
+        "reference": "SVH/26/0951"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "westcountry-photo": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Westcountry Tile & Bathroom",
+        "address": "Brislington Retail Park, Bath Road, Bristol BS4 5NG",
+        "vat_number": "GB 845 2017 73",
+        "email": "trade@westcountrytile.example",
+        "phone": "0117 496 0688"
+      },
+      "invoice_number": "WTB-30455",
+      "invoice_date": "2026-11-12",
+      "due_date": "2026-12-12",
+      "po_number": "HPH-PO-2310",
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Close-coupled WC pan and cistern",
+          "quantity": 1,
+          "unit_price": 189,
+          "vat_rate": 20,
+          "line_total": 189
+        },
+        {
+          "description": "Basin mixer tap, chrome",
+          "quantity": 2,
+          "unit_price": 54.5,
+          "vat_rate": 20,
+          "line_total": 109
+        },
+        {
+          "description": "Pan connector, 110mm",
+          "quantity": 1,
+          "unit_price": 7.95,
+          "vat_rate": 20,
+          "line_total": 7.95
+        }
+      ],
+      "net_total": 305.95,
+      "vat_total": 61.19,
+      "total": 367.14,
+      "payment": {
+        "sort_code": "60-83-01",
+        "account_number": "55102938",
+        "iban": null,
+        "reference": "WTB-30455"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    },
+    "boiler-long-56-lines": {
+      "document_type": "invoice",
+      "supplier": {
+        "name": "Bristol Boiler Spares",
+        "address": "2 Cattle Market Road, Bristol BS1 6QA",
+        "vat_number": "GB 512 8664 09",
+        "email": "orders@bristolboilerspares.example",
+        "phone": "0117 496 0412"
+      },
+      "invoice_number": "BBS-55204",
+      "invoice_date": "2026-11-17",
+      "due_date": "2026-12-17",
+      "po_number": "HPH-PO-2320",
+      "currency": "GBP",
+      "line_items": [
+        {
+          "description": "Magnetic system filter, 22mm",
+          "quantity": 5,
+          "unit_price": 64.5,
+          "vat_rate": 20,
+          "line_total": 322.5
+        },
+        {
+          "description": "Condensate pipe 21.5mm, 3m",
+          "quantity": 2,
+          "unit_price": 5.25,
+          "vat_rate": 20,
+          "line_total": 10.5
+        },
+        {
+          "description": "Pump, A-rated 6m head",
+          "quantity": 5,
+          "unit_price": 142,
+          "vat_rate": 20,
+          "line_total": 710
+        },
+        {
+          "description": "Drain cock, 15mm",
+          "quantity": 5,
+          "unit_price": 2.45,
+          "vat_rate": 20,
+          "line_total": 12.25
+        },
+        {
+          "description": "Filling loop, braided",
+          "quantity": 4,
+          "unit_price": 9.8,
+          "vat_rate": 20,
+          "line_total": 39.2
+        },
+        {
+          "description": "15mm copper tube, 3m",
+          "quantity": 3,
+          "unit_price": 14.85,
+          "vat_rate": 20,
+          "line_total": 44.55
+        },
+        {
+          "description": "Pipe insulation 15mm, 2m",
+          "quantity": 3,
+          "unit_price": 1.35,
+          "vat_rate": 20,
+          "line_total": 4.05
+        },
+        {
+          "description": "Fernox F1 inhibitor, 500ml",
+          "quantity": 4,
+          "unit_price": 16.2,
+          "vat_rate": 20,
+          "line_total": 64.8
+        },
+        {
+          "description": "Pressure relief valve, 3 bar",
+          "quantity": 3,
+          "unit_price": 12.3,
+          "vat_rate": 20,
+          "line_total": 36.9
+        },
+        {
+          "description": "Diverter valve cartridge",
+          "quantity": 6,
+          "unit_price": 58.9,
+          "vat_rate": 20,
+          "line_total": 353.4
+        },
+        {
+          "description": "Lockshield valve, 15mm",
+          "quantity": 3,
+          "unit_price": 6.4,
+          "vat_rate": 20,
+          "line_total": 19.2
+        },
+        {
+          "description": "Expansion vessel, 8 litre",
+          "quantity": 1,
+          "unit_price": 39.5,
+          "vat_rate": 20,
+          "line_total": 39.5
+        },
+        {
+          "description": "22mm copper tube, 3m",
+          "quantity": 1,
+          "unit_price": 27.4,
+          "vat_rate": 20,
+          "line_total": 27.4
+        },
+        {
+          "description": "Fan assembly",
+          "quantity": 3,
+          "unit_price": 96.4,
+          "vat_rate": 20,
+          "line_total": 289.2
+        },
+        {
+          "description": "PTFE tape, 12m",
+          "quantity": 1,
+          "unit_price": 0.69,
+          "vat_rate": 20,
+          "line_total": 0.69
+        },
+        {
+          "description": "Flux and solder kit",
+          "quantity": 4,
+          "unit_price": 12.95,
+          "vat_rate": 20,
+          "line_total": 51.8
+        },
+        {
+          "description": "15mm compression elbow",
+          "quantity": 2,
+          "unit_price": 1.62,
+          "vat_rate": 20,
+          "line_total": 3.24
+        },
+        {
+          "description": "22mm compression tee",
+          "quantity": 3,
+          "unit_price": 4.18,
+          "vat_rate": 20,
+          "line_total": 12.54
+        },
+        {
+          "description": "Flue gasket set",
+          "quantity": 5,
+          "unit_price": 7.45,
+          "vat_rate": 20,
+          "line_total": 37.25
+        },
+        {
+          "description": "Pipe clips 15mm (pack of 20)",
+          "quantity": 6,
+          "unit_price": 3.6,
+          "vat_rate": 20,
+          "line_total": 21.6
+        },
+        {
+          "description": "Ignition electrode",
+          "quantity": 6,
+          "unit_price": 14.6,
+          "vat_rate": 20,
+          "line_total": 87.6
+        },
+        {
+          "description": "PCB, combi boiler (exchange)",
+          "quantity": 2,
+          "unit_price": 188,
+          "vat_rate": 20,
+          "line_total": 376
+        },
+        {
+          "description": "Plate heat exchanger",
+          "quantity": 1,
+          "unit_price": 117.8,
+          "vat_rate": 20,
+          "line_total": 117.8
+        },
+        {
+          "description": "Thermostatic radiator valve, 15mm",
+          "quantity": 1,
+          "unit_price": 18.75,
+          "vat_rate": 20,
+          "line_total": 18.75
+        },
+        {
+          "description": "Air vent, automatic",
+          "quantity": 2,
+          "unit_price": 6.2,
+          "vat_rate": 20,
+          "line_total": 12.4
+        },
+        {
+          "description": "15mm end-feed coupler (pack of 10)",
+          "quantity": 2,
+          "unit_price": 4.95,
+          "vat_rate": 20,
+          "line_total": 9.9
+        },
+        {
+          "description": "Isolating valve, 15mm",
+          "quantity": 6,
+          "unit_price": 3.1,
+          "vat_rate": 20,
+          "line_total": 18.6
+        },
+        {
+          "description": "Gas valve",
+          "quantity": 6,
+          "unit_price": 121.5,
+          "vat_rate": 20,
+          "line_total": 729
+        },
+        {
+          "description": "Magnetic system filter, 22mm",
+          "quantity": 6,
+          "unit_price": 64.5,
+          "vat_rate": 20,
+          "line_total": 387
+        },
+        {
+          "description": "Ignition electrode",
+          "quantity": 3,
+          "unit_price": 14.6,
+          "vat_rate": 20,
+          "line_total": 43.8
+        },
+        {
+          "description": "22mm copper tube, 3m",
+          "quantity": 2,
+          "unit_price": 27.4,
+          "vat_rate": 20,
+          "line_total": 54.8
+        },
+        {
+          "description": "Diverter valve cartridge",
+          "quantity": 4,
+          "unit_price": 58.9,
+          "vat_rate": 20,
+          "line_total": 235.6
+        },
+        {
+          "description": "Fan assembly",
+          "quantity": 6,
+          "unit_price": 96.4,
+          "vat_rate": 20,
+          "line_total": 578.4
+        },
+        {
+          "description": "PCB, combi boiler (exchange)",
+          "quantity": 6,
+          "unit_price": 188,
+          "vat_rate": 20,
+          "line_total": 1128
+        },
+        {
+          "description": "Isolating valve, 15mm",
+          "quantity": 5,
+          "unit_price": 3.1,
+          "vat_rate": 20,
+          "line_total": 15.5
+        },
+        {
+          "description": "Expansion vessel, 8 litre",
+          "quantity": 6,
+          "unit_price": 39.5,
+          "vat_rate": 20,
+          "line_total": 237
+        },
+        {
+          "description": "Flux and solder kit",
+          "quantity": 2,
+          "unit_price": 12.95,
+          "vat_rate": 20,
+          "line_total": 25.9
+        },
+        {
+          "description": "Pipe insulation 15mm, 2m",
+          "quantity": 4,
+          "unit_price": 1.35,
+          "vat_rate": 20,
+          "line_total": 5.4
+        },
+        {
+          "description": "Lockshield valve, 15mm",
+          "quantity": 3,
+          "unit_price": 6.4,
+          "vat_rate": 20,
+          "line_total": 19.2
+        },
+        {
+          "description": "Pressure relief valve, 3 bar",
+          "quantity": 4,
+          "unit_price": 12.3,
+          "vat_rate": 20,
+          "line_total": 49.2
+        },
+        {
+          "description": "Filling loop, braided",
+          "quantity": 4,
+          "unit_price": 9.8,
+          "vat_rate": 20,
+          "line_total": 39.2
+        },
+        {
+          "description": "PTFE tape, 12m",
+          "quantity": 2,
+          "unit_price": 0.69,
+          "vat_rate": 20,
+          "line_total": 1.38
+        },
+        {
+          "description": "Pump, A-rated 6m head",
+          "quantity": 4,
+          "unit_price": 142,
+          "vat_rate": 20,
+          "line_total": 568
+        },
+        {
+          "description": "22mm compression tee",
+          "quantity": 2,
+          "unit_price": 4.18,
+          "vat_rate": 20,
+          "line_total": 8.36
+        },
+        {
+          "description": "15mm copper tube, 3m",
+          "quantity": 3,
+          "unit_price": 14.85,
+          "vat_rate": 20,
+          "line_total": 44.55
+        },
+        {
+          "description": "Condensate pipe 21.5mm, 3m",
+          "quantity": 2,
+          "unit_price": 5.25,
+          "vat_rate": 20,
+          "line_total": 10.5
+        },
+        {
+          "description": "15mm compression elbow",
+          "quantity": 1,
+          "unit_price": 1.62,
+          "vat_rate": 20,
+          "line_total": 1.62
+        },
+        {
+          "description": "15mm end-feed coupler (pack of 10)",
+          "quantity": 6,
+          "unit_price": 4.95,
+          "vat_rate": 20,
+          "line_total": 29.7
+        },
+        {
+          "description": "Air vent, automatic",
+          "quantity": 4,
+          "unit_price": 6.2,
+          "vat_rate": 20,
+          "line_total": 24.8
+        },
+        {
+          "description": "Plate heat exchanger",
+          "quantity": 5,
+          "unit_price": 117.8,
+          "vat_rate": 20,
+          "line_total": 589
+        },
+        {
+          "description": "Pipe clips 15mm (pack of 20)",
+          "quantity": 1,
+          "unit_price": 3.6,
+          "vat_rate": 20,
+          "line_total": 3.6
+        },
+        {
+          "description": "Gas valve",
+          "quantity": 2,
+          "unit_price": 121.5,
+          "vat_rate": 20,
+          "line_total": 243
+        },
+        {
+          "description": "Drain cock, 15mm",
+          "quantity": 2,
+          "unit_price": 2.45,
+          "vat_rate": 20,
+          "line_total": 4.9
+        },
+        {
+          "description": "Thermostatic radiator valve, 15mm",
+          "quantity": 2,
+          "unit_price": 18.75,
+          "vat_rate": 20,
+          "line_total": 37.5
+        },
+        {
+          "description": "Flue gasket set",
+          "quantity": 4,
+          "unit_price": 7.45,
+          "vat_rate": 20,
+          "line_total": 29.8
+        },
+        {
+          "description": "Fernox F1 inhibitor, 500ml",
+          "quantity": 5,
+          "unit_price": 16.2,
+          "vat_rate": 20,
+          "line_total": 81
+        }
+      ],
+      "net_total": 7967.33,
+      "vat_total": 1593.47,
+      "total": 9560.8,
+      "payment": {
+        "sort_code": "40-12-55",
+        "account_number": "27719046",
+        "iban": null,
+        "reference": "BBS-55204"
+      },
+      "uncertain": [],
+      "suspicious_content": []
+    }
+  },
+  "rescored": {
+    "at": "2026-11-18T21:22:17.396Z",
+    "previousSummary": {
+      "documents": 8,
+      "failures": 0,
+      "fieldAccuracy": 0.9910714285714286,
+      "fieldsCorrect": 111,
+      "fieldsTotal": 112,
+      "linesCorrect": 73,
+      "linesTotal": 73,
+      "documentsAllCorrect": 7,
+      "problemsCaught": 4,
+      "problemsPlanted": 4,
+      "cleanDocuments": 4,
+      "cleanWithFalseAlarm": 0,
+      "falseAlarmsTotal": 1,
+      "injectionsReported": 0,
+      "injectionsPlanted": 0,
+      "spuriousSuspicious": 0,
+      "byRender": {
+        "pdf": {
+          "documents": 6,
+          "fieldsCorrect": 83,
+          "fieldsTotal": 84,
+          "linesCorrect": 68,
+          "linesTotal": 68
+        },
+        "photo": {
+          "documents": 2,
+          "fieldsCorrect": 28,
+          "fieldsTotal": 28,
+          "linesCorrect": 5,
+          "linesTotal": 5
+        }
+      },
+      "costUsd": 0.29162800000000005,
+      "costPerDocument": 0.03645350000000001,
+      "medianSeconds": 4.43
+    }
+  }
+}

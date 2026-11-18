@@ -3,5 +3,7 @@ dist/
 .env
 .env.*
 !.env.example
-eval/runs/
+eval/runs/*
+# The held-out runs are the published results, so they are kept.
+!eval/runs/*_heldout.json
 *.log
