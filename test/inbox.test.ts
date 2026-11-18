@@ -87,9 +87,9 @@ describe('inbox routes', () => {
     expect((await post('/api/inbox/sample/nope', JSON.stringify({ session: 'abcd1234-ef' }), json)).status).toBe(404);
   });
 
-  test("sending counts towards the visitor's reading limit", async () => {
-    // The limit is 2 per ten minutes and one send has been made.
-    expect((await post('/api/inbox/sample/avon-invoice', JSON.stringify({ session: 'abcd1234-ef' }), json)).status).toBe(200);
+  test('sends have their own per-visitor limit (5 per ten minutes)', async () => {
+    // One send has been made.
+    for (let i = 0; i < 4; i++) expect((await post('/api/inbox/sample/avon-invoice', JSON.stringify({ session: 'abcd1234-ef' }), json)).status).toBe(200);
     expect((await post('/api/inbox/sample/avon-invoice', JSON.stringify({ session: 'abcd1234-ef' }), json)).status).toBe(429);
   });
 

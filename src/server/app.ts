@@ -110,6 +110,9 @@ export function createApp(o: AppOptions) {
   const guard = o.guard ?? new Guard();
   // Approve/Reject clicks on the page cost nothing, so they get their own, looser limit.
   const decisions = new Guard({ perTenMinutes: 30, perDay: 200, dailySpendUsd: Number.POSITIVE_INFINITY });
+  // Sends to the inbox have per-visitor limits of their own; spending is capped where the reading happens
+  // (the internal API), which falls back to the saved reading once the day's cap is reached.
+  const sends = new Guard({ perTenMinutes: 5, perDay: 20, dailySpendUsd: Number.POSITIVE_INFINITY });
   const log = o.log ?? (() => {});
   const now = o.now ?? (() => new Date());
   const statics = o.staticFiles ?? new Map();
@@ -230,8 +233,7 @@ export function createApp(o: AppOptions) {
       const b = await readJson();
       const session = String(b.session ?? '');
       if (!SESSION.test(session)) throw new HttpError(400, 'bad_request', 'The request could not be read.');
-      if (guard.capReached()) throw new HttpError(429, 'spend_cap', REFUSAL_MESSAGES.spend_cap);
-      const take = guard.take(visitor);
+      const take = sends.take(sends.visitor(clientIp(req)));
       if (!take.ok) throw new HttpError(429, take.reason, REFUSAL_MESSAGES[take.reason]);
       await humanCheck(req, String(b.token ?? ''));
       let result: unknown;
@@ -251,7 +253,7 @@ export function createApp(o: AppOptions) {
       const row = String(b.row ?? '');
       const action = b.action === 'approve' || b.action === 'reject' ? b.action : null;
       if (!SESSION.test(session) || !ROW_ID.test(row) || !action) throw new HttpError(400, 'bad_request', 'The request could not be read.');
-      const take = decisions.take(visitor);
+      const take = decisions.take(decisions.visitor(clientIp(req)));
       if (!take.ok) throw new HttpError(429, take.reason, 'Too many clicks in a short time. Please wait a few minutes.');
       let result: unknown;
       try {

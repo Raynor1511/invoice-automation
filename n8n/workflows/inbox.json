@@ -247,7 +247,7 @@
         "nodeCredentialType": "googleApi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ values: [[$json.channel + \"/\" + $json.ts]] }) }}",
+        "jsonBody": "={{ JSON.stringify({ values: [[$json.ok ? $json.channel + \"/\" + $json.ts : \"Not posted: \" + ($json.error ?? \"unknown error\")]] }) }}",
         "options": {
           "timeout": 20000
         }

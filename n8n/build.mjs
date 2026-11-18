@@ -195,7 +195,8 @@ return [{ json: {
       [1980, 160],
       'PUT',
       `=${SHEETS}/values/${LEDGER_RANGE}!T{{ $('Add to the ledger').first().json.updates.updatedRange.match(/(\\d+)$/)[1] }}?valueInputOption=RAW`,
-      '={{ JSON.stringify({ values: [[$json.channel + "/" + $json.ts]] }) }}',
+      // Slack answers 200 even when it refuses a message, so a refusal is written to the ledger instead.
+      '={{ JSON.stringify({ values: [[$json.ok ? $json.channel + "/" + $json.ts : "Not posted: " + ($json.error ?? "unknown error")]] }) }}',
     ),
     respondNode('Reply', [2200, 300], "={{ JSON.stringify($('Ledger row').first().json.reply) }}"),
   ],
