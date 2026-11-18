@@ -78,7 +78,6 @@ const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
           </div>
         </li>
       </ul>
-      <div id="turnstile"></div>
     </section>
 
     <section class="result wrap" id="result" hidden aria-live="polite">
@@ -88,6 +87,7 @@ const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
       </div>
       <div class="panel card">
         <p class="status" id="status" hidden></p>
+        <div id="turnstile"></div>
         <div id="reading"></div>
         <div class="exports" id="exports" hidden>
           <button type="button" class="btn btn-ghost" id="export-csv">Download CSV</button>
@@ -138,7 +138,6 @@ const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
   .upload { cursor: default; border-style: dashed; border-color: var(--line-2); background: #fbfcfb; }
   .upload.over { border-color: var(--brand); background: var(--brand-soft); }
   .upload .btn { margin-top: 10px; align-self: flex-start; }
-  #turnstile { margin-top: 12px; }
 
   .result { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 20px; align-items: start; padding-bottom: 64px; scroll-margin-top: 16px; }
   @media (max-width: 900px) { .result { grid-template-columns: 1fr; } }
@@ -187,6 +186,7 @@ const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
   #reading :global(.payment) { border-radius: 8px; }
   #reading :global(.muted) { color: var(--muted); font-size: 15px; }
   #reading :global(.meta) { margin: 20px 0 0; font-size: 13.5px; color: var(--faint); }
+  #turnstile:not(:empty) { margin: 4px 0 14px; }
   .exports { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 
   .footer { background: var(--brand-ink); color: rgba(255,255,255,.75); padding: 22px 0; font-size: 14px; }

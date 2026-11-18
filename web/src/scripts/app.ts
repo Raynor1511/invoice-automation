@@ -67,6 +67,9 @@ function loadTurnstile(siteKey: string): Promise<void> {
         execution: 'execute',
         appearance: 'interaction-only',
         callback: (t: string) => pending?.resolve(t),
+        // Shown only when Cloudflare wants a click; the box sits in the result panel, where the visitor is looking.
+        'before-interactive-callback': () => ($('#status').textContent = 'Please tick the box to confirm you are a person.'),
+        'after-interactive-callback': () => ($('#status').textContent = 'Reading the document…'),
         'error-callback': () => pending?.reject(new Error('turnstile')),
       });
       resolve();
