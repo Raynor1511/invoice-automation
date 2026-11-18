@@ -1,0 +1,27 @@
+# On the VPS: /srv/invoice-automation. The demo joins the shared "web" network, where the edge
+# Caddy (raynors-infra) routes invoices.raynors.dev to it; it publishes no ports.
+#   docker compose up -d --build
+name: invoices
+
+services:
+  invoice-demo:
+    build: .
+    image: invoice-demo:server
+    container_name: invoice-demo
+    restart: unless-stopped
+    environment:
+      PUBLIC_ORIGIN: https://invoices.raynors.dev
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?Set ANTHROPIC_API_KEY in .env}
+      TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:?Set TURNSTILE_SITE_KEY in .env}
+      TURNSTILE_SECRET: ${TURNSTILE_SECRET:?Set TURNSTILE_SECRET in .env}
+      DAILY_SPEND_USD: ${DAILY_SPEND_USD:-1}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    tmpfs: [/tmp]
+    networks: [web]
+
+networks:
+  web:
+    external: true
