@@ -23,6 +23,8 @@ function key(d: Doc, file: string) {
   const a = amounts(d);
   // Per-line VAT rates are scored only where the document prints them on each line.
   const lineVatPrinted = d.layout === 'classic';
+  // Statements print a net amount per transaction, with no quantity or unit-price columns.
+  const qtyPrinted = d.layout !== 'statement';
   return {
     id: d.id,
     file,
@@ -39,7 +41,7 @@ function key(d: Doc, file: string) {
       due_date: d.due,
       po_number: d.po,
       currency: d.currency,
-      line_items: d.lines.map((l, i) => ({ description: l.description, quantity: l.qty, unit_price: l.unit, vat_rate: lineVatPrinted ? l.vat : null, line_total: a.lineTotals[i]! })),
+      line_items: d.lines.map((l, i) => ({ description: l.description, quantity: qtyPrinted ? l.qty : null, unit_price: qtyPrinted ? l.unit : null, vat_rate: lineVatPrinted ? l.vat : null, line_total: a.lineTotals[i]! })),
       net_total: a.net,
       vat_total: a.vat,
       total: a.total,

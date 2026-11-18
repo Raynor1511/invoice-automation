@@ -26,7 +26,7 @@ export const ExtractionSchema = z.object({
   invoice_number: z.string().nullable().describe('Invoice, credit note, receipt or statement number.'),
   invoice_date: date,
   due_date: date,
-  po_number: z.string().nullable().describe('Purchase order or customer reference, if any.'),
+  po_number: z.string().nullable().describe("The buyer's purchase order number or order reference (labelled PO, order no. or your ref). Not an account or customer number."),
   currency: z.string().describe('ISO 4217 code, e.g. GBP or EUR.'),
   line_items: z.array(LineItemSchema),
   net_total: money.describe('Total before VAT, as printed.'),
