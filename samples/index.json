@@ -46,7 +46,7 @@
     "demo": {
       "order": 5,
       "title": "Totals that don’t add up",
-      "blurb": "One line and the total are wrong. Can it tell?"
+      "blurb": "One line and the total are wrong."
     }
   },
   {

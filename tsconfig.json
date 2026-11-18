@@ -14,5 +14,5 @@
     "erasableSyntaxOnly": true,
     "types": ["node"]
   },
-  "include": ["src", "scripts", "test", "eval"]
+  "include": ["src", "scripts", "test", "eval", "web/src/scripts", "web/src/env.d.ts"]
 }

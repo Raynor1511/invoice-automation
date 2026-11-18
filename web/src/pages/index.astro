@@ -1,0 +1,194 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import { readFileSync } from 'node:fs';
+import { PDFDocument } from 'pdf-lib';
+
+type Entry = { id: string; file: string; demo: { order: number; title: string; blurb: string } | null };
+const index: Entry[] = JSON.parse(readFileSync('samples/index.json', 'utf8'));
+const samples = await Promise.all(
+  index
+    .filter((s) => s.demo)
+    .sort((a, b) => a.demo!.order - b.demo!.order)
+    .map(async (s) => {
+      const pdf = s.file.endsWith('.pdf');
+      const pages = pdf ? (await PDFDocument.load(readFileSync(`samples/docs/${s.file}`))).getPageCount() : 1;
+      return { id: s.id, ...s.demo!, kind: pdf ? `PDF · ${pages} ${pages === 1 ? 'page' : 'pages'}` : 'Phone photo' };
+    }),
+);
+const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supplier invoices · Harbourline Plumbing &amp; Heating</title>
+  <meta name="description" content="Demo: AI reads a supplier invoice or receipt, and code checks the sums, VAT, dates, supplier record and bank details." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0d6b63" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="demo-bar">
+    <div class="wrap">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><strong>Demo back office for a fictional company.</strong> The document reader is a real AI system built by <a href={builder.url}>{builder.name}</a>. Names, numbers and addresses are made up.</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="wrap bar">
+      <a href="https://harbourline.raynors.dev/" class="brand" aria-label="Harbourline Plumbing & Heating website"><Logo /></a>
+      <span class="area">Back office</span>
+      <a class="site-link" href="https://harbourline.raynors.dev/">Main website</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="intro wrap">
+      <p class="eyebrow">Supplier invoices</p>
+      <h1>Read an invoice</h1>
+      <p class="lead">Choose a sample or upload a supplier invoice or receipt. AI reads the details, then code checks the sums, VAT, dates, supplier record and bank details, and flags anything a person should look at before paying.</p>
+      <p class="privacy">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Your file is read in memory and not stored. Please don't upload documents with personal details.
+      </p>
+      <p class="paused" id="paused" hidden>Live readings are paused for today. The samples show their saved readings.</p>
+    </section>
+
+    <section class="pick wrap" aria-label="Choose a document">
+      <ul class="samples">
+        {samples.map((s) => (
+          <li>
+            <button type="button" class="sample" data-sample={s.id}>
+              <span class="kind">{s.kind}</span>
+              <strong>{s.title}</strong>
+              <span class="blurb">{s.blurb}</span>
+            </button>
+          </li>
+        ))}
+        <li>
+          <div class="sample upload" id="drop">
+            <span class="kind">Your own</span>
+            <strong>Upload a document</strong>
+            <span class="blurb">PDF, JPG, PNG or WebP, up to 5 MB and 5 pages. Or drop it here.</span>
+            <button type="button" class="btn btn-brand" id="upload-btn">Choose a file</button>
+            <input type="file" id="file" accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp" hidden />
+          </div>
+        </li>
+      </ul>
+      <div id="turnstile"></div>
+    </section>
+
+    <section class="result wrap" id="result" hidden aria-live="polite">
+      <div class="doc card">
+        <p class="doc-name" id="doc-name"></p>
+        <div class="pages" id="pages"></div>
+      </div>
+      <div class="panel card">
+        <p class="status" id="status" hidden></p>
+        <div id="reading"></div>
+        <div class="exports" id="exports" hidden>
+          <button type="button" class="btn btn-ghost" id="export-csv">Download CSV</button>
+          <button type="button" class="btn btn-ghost" id="export-json">Download JSON</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>Harbourline Plumbing &amp; Heating is a fictional company. Demo by <a href={builder.url}>{builder.name}</a>.</span>
+    </div>
+  </footer>
+
+  <script src="../scripts/app.ts"></script>
+</body>
+</html>
+
+<style>
+  .demo-bar { background: var(--brand-ink); color: rgba(255,255,255,.88); font-size: 14px; line-height: 1.45; }
+  .demo-bar .wrap { display: flex; gap: 10px; align-items: flex-start; padding-top: 9px; padding-bottom: 9px; }
+  .demo-bar svg { flex: none; margin-top: 1px; color: var(--accent); }
+  .demo-bar a { color: #fff; }
+  .header { background: #fff; border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; gap: 16px; height: 72px; }
+  .brand { text-decoration: none; flex: none; }
+  .area { padding: 4px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark); font-weight: 700; font-size: 13.5px; }
+  .site-link { margin-left: auto; font-weight: 600; font-size: 15px; color: var(--ink); }
+  @media (max-width: 480px) { .area { display: none; } }
+
+  .intro { padding-top: 44px; padding-bottom: 8px; }
+  .eyebrow { font-size: 13.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin-bottom: 10px; }
+  .lead { font-size: 1.12rem; color: var(--muted); max-width: 760px; }
+  .privacy { display: flex; gap: 8px; align-items: center; font-size: 14.5px; color: var(--muted); }
+  .privacy svg { flex: none; color: var(--brand); }
+  .paused { padding: 10px 14px; border-radius: 12px; background: var(--accent-soft); color: var(--warn-ink); font-weight: 600; }
+
+  .pick { padding-top: 16px; padding-bottom: 40px; }
+  .samples { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .samples li { display: flex; }
+  .sample { flex: 1; display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 16px 18px; border-radius: var(--radius); border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); font: inherit; color: var(--text); cursor: pointer; transition: border-color .2s, transform .2s; }
+  button.sample:hover:not(:disabled) { border-color: var(--brand); transform: translateY(-1px); }
+  .sample:disabled { opacity: .6; cursor: progress; }
+  .sample strong { font-family: var(--display); color: var(--ink); font-size: 1.05rem; }
+  .kind { font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--brand); }
+  .blurb { font-size: 14.5px; color: var(--muted); }
+  .upload { cursor: default; border-style: dashed; border-color: var(--line-2); background: #fbfcfb; }
+  .upload.over { border-color: var(--brand); background: var(--brand-soft); }
+  .upload .btn { margin-top: 10px; align-self: flex-start; }
+  #turnstile { margin-top: 12px; }
+
+  .result { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 20px; align-items: start; padding-bottom: 64px; scroll-margin-top: 16px; }
+  @media (max-width: 900px) { .result { grid-template-columns: 1fr; } }
+  .doc { padding: 14px; position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto; background: #e9ece9; }
+  @media (max-width: 900px) { .doc { position: static; max-height: 70vh; } }
+  .doc-name { margin: 0 0 10px; font-weight: 700; color: var(--ink); font-size: 14.5px; }
+  .pages { display: grid; gap: 12px; }
+  .pages :global(.page) { width: 100%; height: auto; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.18); border-radius: 2px; }
+  .panel { padding: 22px 24px; min-height: 240px; }
+  @media (max-width: 520px) { .panel { padding: 18px 16px; } }
+  .status { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--brand-dark); }
+  .status::before { content: ''; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--brand-soft); border-top-color: var(--brand); animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .status::before { animation: none; } }
+
+  #reading :global(.verdict) { display: grid; gap: 2px; padding: 14px 16px; border-radius: 12px; margin-bottom: 14px; }
+  #reading :global(.verdict strong) { font-family: var(--display); font-size: 1.15rem; }
+  #reading :global(.verdict.ok) { background: var(--ok-soft); color: var(--ok); }
+  #reading :global(.verdict.warning) { background: var(--accent-soft); color: var(--warn-ink); }
+  #reading :global(.verdict.error) { background: var(--danger-soft); color: var(--danger); }
+  #reading :global(.verdict span) { color: var(--text); font-size: 15px; }
+  #reading :global(.notice) { font-size: 14.5px; color: var(--warn-ink); background: var(--accent-soft); padding: 8px 12px; border-radius: 10px; }
+  #reading :global(.flags) { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
+  #reading :global(.flags li) { display: flex; gap: 10px; align-items: baseline; font-size: 15px; }
+  #reading :global(.tag) { flex: none; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; padding: 2px 8px; border-radius: 6px; }
+  #reading :global(.flags .error .tag) { background: var(--danger); color: #fff; }
+  #reading :global(.flags .warning .tag) { background: var(--accent); color: #2b1a02; }
+  #reading :global(h3) { margin: 20px 0 8px; font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; font-family: var(--font); color: var(--muted); }
+  #reading :global(dl) { margin: 0; display: grid; }
+  #reading :global(.row) { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  #reading :global(dt) { color: var(--muted); font-size: 14.5px; }
+  #reading :global(dd) { margin: 0; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+  #reading :global(.badge) { display: inline-block; margin-left: 4px; font-size: 12px; font-weight: 700; padding: 1px 7px; border-radius: 999px; vertical-align: 1px; }
+  #reading :global(.badge.ok) { background: var(--ok-soft); color: var(--ok); }
+  #reading :global(.badge.warn) { background: var(--accent-soft); color: var(--warn-ink); }
+  #reading :global(.flag-error) { background: var(--danger-soft); box-shadow: inset 3px 0 0 var(--danger); }
+  #reading :global(.flag-warning) { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+  #reading :global(.table-scroll) { overflow-x: auto; }
+  #reading :global(.lines) { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  #reading :global(.lines th) { text-align: left; font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line-2); }
+  #reading :global(.lines td) { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink); }
+  #reading :global(.lines .n) { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  #reading :global(.totals) { margin-top: 8px; margin-left: auto; max-width: 340px; }
+  #reading :global(.totals dd) { text-align: right; font-variant-numeric: tabular-nums; }
+  #reading :global(.totals .grand dd) { font-size: 1.1rem; }
+  #reading :global(.payment) { border-radius: 8px; }
+  #reading :global(.muted) { color: var(--muted); font-size: 15px; }
+  #reading :global(.meta) { margin: 20px 0 0; font-size: 13.5px; color: var(--faint); }
+  .exports { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+  .footer { background: var(--brand-ink); color: rgba(255,255,255,.75); padding: 22px 0; font-size: 14px; }
+  .footer a { color: #fff; }
+</style>

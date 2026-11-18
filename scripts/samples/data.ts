@@ -124,7 +124,7 @@ export const docs: Doc[] = [
     bank: null, expectFlags: [], allowFlags: ['uncertain_reading'],
   },
   {
-    id: 'westcountry-wrong-totals', demo: { order: 5, title: 'Totals that don’t add up', blurb: 'One line and the total are wrong. Can it tell?' },
+    id: 'westcountry-wrong-totals', demo: { order: 5, title: 'Totals that don’t add up', blurb: 'One line and the total are wrong.' },
     set: 'tuning', layout: 'classic', render: 'pdf', type: 'invoice', supplier: tile, number: 'WTB-30417', date: '2026-11-05', due: '2026-12-05', po: 'HPH-PO-2302', currency: 'GBP',
     lines: [
       { description: 'Porcelain wall tile, matt white 300x600 (m²)', qty: 14, unit: 32.5, vat: 20 },

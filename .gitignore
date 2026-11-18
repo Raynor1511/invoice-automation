@@ -7,3 +7,5 @@ eval/runs/*
 # The held-out runs are the published results, so they are kept.
 !eval/runs/*_heldout.json
 *.log
+web/public/pdfjs/
+.astro/
