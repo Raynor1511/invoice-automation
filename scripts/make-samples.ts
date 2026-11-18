@@ -28,6 +28,7 @@ function key(d: Doc, file: string) {
     file,
     set: d.set,
     demo: d.demo ?? null,
+    render: d.render,
     context: { today: EVAL_TODAY, ...(d.seen ? { seen: d.seen } : {}) },
     lineVatPrinted,
     expected: {

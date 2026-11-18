@@ -3,6 +3,7 @@
   "file": "severn-vat-mismatch.pdf",
   "set": "heldout",
   "demo": null,
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },

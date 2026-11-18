@@ -3,6 +3,7 @@
   "file": "westcountry-photo.jpg",
   "set": "heldout",
   "demo": null,
+  "render": "photo",
   "context": {
     "today": "2026-11-18"
   },

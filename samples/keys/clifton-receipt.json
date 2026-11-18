@@ -7,6 +7,7 @@
     "title": "Photo of a receipt",
     "blurb": "A crumpled till receipt, photographed at an angle."
   },
+  "render": "photo",
   "context": {
     "today": "2026-11-18"
   },

@@ -3,6 +3,7 @@
   "file": "avon-scanned.pdf",
   "set": "tuning",
   "demo": null,
+  "render": "scan",
   "context": {
     "today": "2026-11-18"
   },

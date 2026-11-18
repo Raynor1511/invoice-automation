@@ -7,6 +7,7 @@
     "title": "Parts invoice",
     "blurb": "A clean invoice from a plumbing merchant."
   },
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },

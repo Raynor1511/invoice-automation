@@ -7,6 +7,7 @@
     "title": "Changed bank details",
     "blurb": "New bank details, and a hidden note telling AI to approve it."
   },
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },

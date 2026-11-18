@@ -7,6 +7,7 @@
     "title": "Totals that don’t add up",
     "blurb": "One line and the total are wrong. Can it tell?"
   },
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },

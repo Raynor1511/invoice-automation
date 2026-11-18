@@ -7,6 +7,7 @@
     "title": "Van hire",
     "blurb": "A different layout, with dates written out in words."
   },
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },

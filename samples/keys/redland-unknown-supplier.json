@@ -3,6 +3,7 @@
   "file": "redland-unknown-supplier.pdf",
   "set": "tuning",
   "demo": null,
+  "render": "pdf",
   "context": {
     "today": "2026-11-18"
   },
