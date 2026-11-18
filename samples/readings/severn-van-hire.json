@@ -1,0 +1,54 @@
+{
+  "model": "claude-haiku-5-5",
+  "extraction": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Severn Van Hire Ltd",
+      "address": "Unit 7, Avonmouth Way, Bristol BS11 9YA",
+      "vat_number": "GB 397 1054 82",
+      "email": "hire@severnvans.example",
+      "phone": "0117 496 0377"
+    },
+    "invoice_number": "SVH/26/0918",
+    "invoice_date": "2026-11-07",
+    "due_date": "2026-11-21",
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Ford Transit Custom, weekly hire (2 Nov to 9 Nov)",
+        "quantity": 1,
+        "unit_price": 245,
+        "vat_rate": null,
+        "line_total": 245
+      },
+      {
+        "description": "Collision damage waiver, 7 days",
+        "quantity": 7,
+        "unit_price": 9.5,
+        "vat_rate": null,
+        "line_total": 66.5
+      },
+      {
+        "description": "Excess mileage (112 miles at 18p)",
+        "quantity": 112,
+        "unit_price": 0.18,
+        "vat_rate": null,
+        "line_total": 20.16
+      }
+    ],
+    "net_total": 331.66,
+    "vat_total": 66.33,
+    "total": 397.99,
+    "payment": {
+      "sort_code": "30-91-12",
+      "account_number": "61029384",
+      "iban": null,
+      "reference": "SVH/26/0918"
+    },
+    "uncertain": [],
+    "suspicious_content": []
+  },
+  "costUsd": 0.0009593,
+  "ms": 4513
+}

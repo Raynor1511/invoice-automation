@@ -11,6 +11,7 @@
     "verbatimModuleSyntax": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
+    "erasableSyntaxOnly": true,
     "types": ["node"]
   },
   "include": ["src", "scripts", "test", "eval"]

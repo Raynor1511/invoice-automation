@@ -1,0 +1,61 @@
+{
+  "model": "claude-haiku-5-5",
+  "extraction": {
+    "document_type": "receipt",
+    "supplier": {
+      "name": "Clifton Hardware",
+      "address": "41 Princess Victoria Street, Clifton",
+      "vat_number": "GB 731 0945 66",
+      "email": null,
+      "phone": "0117 496 0533"
+    },
+    "invoice_number": "0447-2219",
+    "invoice_date": "2026-11-12",
+    "due_date": null,
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "SDS drill bits 6mm x2",
+        "quantity": 1,
+        "unit_price": 8.99,
+        "vat_rate": 20,
+        "line_total": 8.99
+      },
+      {
+        "description": "Silicone sealant white",
+        "quantity": 2,
+        "unit_price": 5.49,
+        "vat_rate": 20,
+        "line_total": 10.98
+      },
+      {
+        "description": "Dust sheets 12x9ft",
+        "quantity": 1,
+        "unit_price": 12.99,
+        "vat_rate": 20,
+        "line_total": 12.99
+      },
+      {
+        "description": "Wall plugs brown x100",
+        "quantity": 1,
+        "unit_price": 3.29,
+        "vat_rate": 20,
+        "line_total": 3.29
+      }
+    ],
+    "net_total": 30.21,
+    "vat_total": 6.04,
+    "total": 36.25,
+    "payment": {
+      "sort_code": null,
+      "account_number": null,
+      "iban": null,
+      "reference": null
+    },
+    "uncertain": [],
+    "suspicious_content": []
+  },
+  "costUsd": 0.0008929000000000001,
+  "ms": 4771
+}
