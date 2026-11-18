@@ -12,7 +12,8 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "erasableSyntaxOnly": true,
+    "allowJs": true,
     "types": ["node"]
   },
-  "include": ["src", "scripts", "test", "eval", "web/src/scripts", "web/src/env.d.ts"]
+  "include": ["src", "scripts", "test", "eval", "web/src/scripts", "web/src/env.d.ts", "n8n/src"]
 }
