@@ -24,7 +24,8 @@ export type AppOptions = {
   sampleDir: string;
   readings: Map<string, SavedReading>;
   staticFiles?: Map<string, { body: Buffer; type: string }>;
-  turnstile?: { siteKey: string; secret: string; fetchImpl?: typeof fetch } | null;
+  /** hostname: what Turnstile must report; defaults to the origin's (Cloudflare's test keys report example.com). */
+  turnstile?: { siteKey: string; secret: string; hostname?: string; fetchImpl?: typeof fetch } | null;
   guard?: Guard;
   trustProxy?: boolean;
   log?: (entry: Record<string, unknown>) => void;
@@ -140,7 +141,7 @@ export function createApp(o: AppOptions) {
 
   async function humanCheck(req: IncomingMessage, token: string) {
     if (!o.turnstile) return; // local development
-    const v = await verifyTurnstile(token, o.turnstile.secret, { remoteIp: clientIp(req), expectedHostname: host, fetchImpl: o.turnstile.fetchImpl });
+    const v = await verifyTurnstile(token, o.turnstile.secret, { remoteIp: clientIp(req), expectedHostname: o.turnstile.hostname ?? host, fetchImpl: o.turnstile.fetchImpl });
     if (!v.ok) throw new HttpError(403, 'turnstile', 'The check that you are a person did not go through. Please try again.');
   }
 

@@ -25,7 +25,7 @@ function required(name: string): string {
 
 const apiKey = required('ANTHROPIC_API_KEY');
 const origin = env.PUBLIC_ORIGIN ?? (production ? required('PUBLIC_ORIGIN') : 'http://localhost:8080');
-const turnstile = env.TURNSTILE_SECRET && env.TURNSTILE_SITE_KEY ? { siteKey: env.TURNSTILE_SITE_KEY, secret: env.TURNSTILE_SECRET } : null;
+const turnstile = env.TURNSTILE_SECRET && env.TURNSTILE_SITE_KEY ? { siteKey: env.TURNSTILE_SITE_KEY, secret: env.TURNSTILE_SECRET, hostname: env.TURNSTILE_HOSTNAME } : null;
 if (production && !turnstile) {
   console.error('Missing setting TURNSTILE_SITE_KEY / TURNSTILE_SECRET (required in production).');
   process.exit(1);
