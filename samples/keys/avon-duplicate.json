@@ -1,0 +1,84 @@
+{
+  "id": "avon-duplicate",
+  "file": "avon-duplicate.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18",
+    "seen": {
+      "avon": [
+        "APS-104772"
+      ]
+    }
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Avon Plumbing Supplies Ltd",
+      "vat_number": "GB 284 7193 05"
+    },
+    "invoice_number": "APS-104772",
+    "invoice_date": "2026-11-03",
+    "due_date": "2026-12-03",
+    "po_number": "HPH-PO-2291",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Fernox F1 inhibitor, 500ml",
+        "quantity": 2,
+        "unit_price": 16.2,
+        "vat_rate": 20,
+        "line_total": 32.4
+      },
+      {
+        "description": "Lockshield valve, 15mm",
+        "quantity": 1,
+        "unit_price": 6.4,
+        "vat_rate": 20,
+        "line_total": 6.4
+      },
+      {
+        "description": "PCB, combi boiler (exchange)",
+        "quantity": 6,
+        "unit_price": 188,
+        "vat_rate": 20,
+        "line_total": 1128
+      },
+      {
+        "description": "15mm compression elbow",
+        "quantity": 5,
+        "unit_price": 1.62,
+        "vat_rate": 20,
+        "line_total": 8.1
+      },
+      {
+        "description": "PTFE tape, 12m",
+        "quantity": 5,
+        "unit_price": 0.69,
+        "vat_rate": 20,
+        "line_total": 3.45
+      },
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 3,
+        "unit_price": 64.5,
+        "vat_rate": 20,
+        "line_total": 193.5
+      }
+    ],
+    "net_total": 1371.85,
+    "vat_total": 274.37,
+    "total": 1646.22,
+    "payment": {
+      "sort_code": "20-45-77",
+      "account_number": "43817260",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "duplicate"
+  ],
+  "allowFlags": []
+}

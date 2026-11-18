@@ -1,0 +1,58 @@
+{
+  "id": "heizteile-eur",
+  "file": "heizteile-eur.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Heizteile Direkt GmbH",
+      "vat_number": "DE 287 451 903"
+    },
+    "invoice_number": "RE-2026-11873",
+    "invoice_date": "2026-11-04",
+    "due_date": "2026-12-04",
+    "po_number": "HPH-PO-2288",
+    "currency": "EUR",
+    "line_items": [
+      {
+        "description": "Wärmetauscher Typ WT-24 (heat exchanger)",
+        "quantity": 2,
+        "unit_price": 186.4,
+        "vat_rate": null,
+        "line_total": 372.8
+      },
+      {
+        "description": "Zündelektrode Satz (ignition electrode set)",
+        "quantity": 5,
+        "unit_price": 12.9,
+        "vat_rate": null,
+        "line_total": 64.5
+      },
+      {
+        "description": "Versandkosten (shipping)",
+        "quantity": 1,
+        "unit_price": 34.5,
+        "vat_rate": null,
+        "line_total": 34.5
+      }
+    ],
+    "net_total": 471.8,
+    "vat_total": 0,
+    "total": 471.8,
+    "payment": {
+      "sort_code": null,
+      "account_number": null,
+      "iban": "DE44 6005 0101 0004 9618 33"
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "foreign_currency"
+  ],
+  "allowFlags": []
+}

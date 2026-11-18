@@ -1,0 +1,30 @@
+{
+  "name": "invoice-automation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI document extraction for supplier invoices, with code-side checks, plus an n8n workflow that files them into a purchase ledger. Demo for a fictional company.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "samples": "tsx scripts/make-samples.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.7.0",
+    "zod": "4.6.7",
+    "pdf-lib": "1.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pdfkit": "0.17.7",
+    "pdfkit": "0.20.2",
+    "sharp": "0.35.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.1"
+  }
+}

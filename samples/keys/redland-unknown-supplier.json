@@ -1,0 +1,51 @@
+{
+  "id": "redland-unknown-supplier",
+  "file": "redland-unknown-supplier.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Redland Roofing Supplies",
+      "vat_number": "GB 451 9902 37"
+    },
+    "invoice_number": "RRS-2210",
+    "invoice_date": "2026-11-06",
+    "due_date": "2026-12-06",
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Lead flashing code 4, 300mm x 6m",
+        "quantity": 1,
+        "unit_price": 96.2,
+        "vat_rate": 20,
+        "line_total": 96.2
+      },
+      {
+        "description": "Lead sealant",
+        "quantity": 2,
+        "unit_price": 8.4,
+        "vat_rate": 20,
+        "line_total": 16.8
+      }
+    ],
+    "net_total": 113,
+    "vat_total": 22.6,
+    "total": 135.6,
+    "payment": {
+      "sort_code": "20-66-14",
+      "account_number": "30192837",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "unknown_supplier"
+  ],
+  "allowFlags": []
+}

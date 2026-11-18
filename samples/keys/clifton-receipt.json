@@ -1,0 +1,69 @@
+{
+  "id": "clifton-receipt",
+  "file": "clifton-receipt.jpg",
+  "set": "tuning",
+  "demo": {
+    "order": 4,
+    "title": "Photo of a receipt",
+    "blurb": "A crumpled till receipt, photographed at an angle."
+  },
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "receipt",
+    "supplier": {
+      "name": "Clifton Hardware",
+      "vat_number": "GB 731 0945 66"
+    },
+    "invoice_number": "0447-2219",
+    "invoice_date": "2026-11-12",
+    "due_date": null,
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "SDS drill bits 6mm x2",
+        "quantity": 1,
+        "unit_price": 8.99,
+        "vat_rate": null,
+        "line_total": 8.99
+      },
+      {
+        "description": "Silicone sealant white",
+        "quantity": 2,
+        "unit_price": 5.49,
+        "vat_rate": null,
+        "line_total": 10.98
+      },
+      {
+        "description": "Dust sheets 12x9ft",
+        "quantity": 1,
+        "unit_price": 12.99,
+        "vat_rate": null,
+        "line_total": 12.99
+      },
+      {
+        "description": "Wall plugs brown x100",
+        "quantity": 1,
+        "unit_price": 3.29,
+        "vat_rate": null,
+        "line_total": 3.29
+      }
+    ],
+    "net_total": 30.21,
+    "vat_total": 6.04,
+    "total": 36.25,
+    "payment": {
+      "sort_code": null,
+      "account_number": null,
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": [
+    "uncertain_reading"
+  ]
+}

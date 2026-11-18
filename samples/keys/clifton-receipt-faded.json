@@ -1,0 +1,51 @@
+{
+  "id": "clifton-receipt-faded",
+  "file": "clifton-receipt-faded.jpg",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "receipt",
+    "supplier": {
+      "name": "Clifton Hardware",
+      "vat_number": "GB 731 0945 66"
+    },
+    "invoice_number": "0447-2306",
+    "invoice_date": "2026-11-15",
+    "due_date": null,
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Hacksaw blades x5",
+        "quantity": 1,
+        "unit_price": 4.49,
+        "vat_rate": null,
+        "line_total": 4.49
+      },
+      {
+        "description": "Pipe cutter 15-22mm",
+        "quantity": 1,
+        "unit_price": 14.99,
+        "vat_rate": null,
+        "line_total": 14.99
+      }
+    ],
+    "net_total": 16.23,
+    "vat_total": 3.25,
+    "total": 19.48,
+    "payment": {
+      "sort_code": null,
+      "account_number": null,
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": [
+    "uncertain_reading"
+  ]
+}

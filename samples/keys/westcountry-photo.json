@@ -1,0 +1,58 @@
+{
+  "id": "westcountry-photo",
+  "file": "westcountry-photo.jpg",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Westcountry Tile & Bathroom",
+      "vat_number": "GB 845 2017 73"
+    },
+    "invoice_number": "WTB-30455",
+    "invoice_date": "2026-11-12",
+    "due_date": "2026-12-12",
+    "po_number": "HPH-PO-2310",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Close-coupled WC pan and cistern",
+        "quantity": 1,
+        "unit_price": 189,
+        "vat_rate": 20,
+        "line_total": 189
+      },
+      {
+        "description": "Basin mixer tap, chrome",
+        "quantity": 2,
+        "unit_price": 54.5,
+        "vat_rate": 20,
+        "line_total": 109
+      },
+      {
+        "description": "Pan connector, 110mm",
+        "quantity": 1,
+        "unit_price": 7.95,
+        "vat_rate": 20,
+        "line_total": 7.95
+      }
+    ],
+    "net_total": 305.95,
+    "vat_total": 61.19,
+    "total": 367.14,
+    "payment": {
+      "sort_code": "60-83-01",
+      "account_number": "55102938",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": [
+    "uncertain_reading"
+  ]
+}

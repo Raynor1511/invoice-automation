@@ -1,0 +1,49 @@
+{
+  "id": "kingswood-credit-note",
+  "file": "kingswood-credit-note.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "credit_note",
+    "supplier": {
+      "name": "Kingswood Electrical Wholesale",
+      "vat_number": "GB 173 5509 26"
+    },
+    "invoice_number": "CN-77104",
+    "invoice_date": "2026-11-11",
+    "due_date": null,
+    "po_number": "HPH-PO-2270",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Return: RCD consumer unit, 10-way (unused)",
+        "quantity": -1,
+        "unit_price": 112.4,
+        "vat_rate": 20,
+        "line_total": -112.4
+      },
+      {
+        "description": "Return: 2.5mm twin and earth, 50m",
+        "quantity": -1,
+        "unit_price": 48.75,
+        "vat_rate": 20,
+        "line_total": -48.75
+      }
+    ],
+    "net_total": -161.15,
+    "vat_total": -32.23,
+    "total": -193.38,
+    "payment": {
+      "sort_code": "20-17-44",
+      "account_number": "83390175",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": []
+}

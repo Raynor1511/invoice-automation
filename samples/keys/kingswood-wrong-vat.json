@@ -1,0 +1,51 @@
+{
+  "id": "kingswood-wrong-vat",
+  "file": "kingswood-wrong-vat.pdf",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Kingswood Electrical Wholesale",
+      "vat_number": "GB 173 5509 26"
+    },
+    "invoice_number": "KEW-90260",
+    "invoice_date": "2026-11-16",
+    "due_date": "2026-12-16",
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "LED downlights, fire-rated (box of 10)",
+        "quantity": 2,
+        "unit_price": 64,
+        "vat_rate": 20,
+        "line_total": 128
+      },
+      {
+        "description": "Junction boxes (pack of 10)",
+        "quantity": 1,
+        "unit_price": 18.5,
+        "vat_rate": 20,
+        "line_total": 18.5
+      }
+    ],
+    "net_total": 146.5,
+    "vat_total": 36.6,
+    "total": 183.1,
+    "payment": {
+      "sort_code": "20-17-44",
+      "account_number": "83390175",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "vat_amount"
+  ],
+  "allowFlags": []
+}

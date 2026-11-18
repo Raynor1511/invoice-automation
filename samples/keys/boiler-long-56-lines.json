@@ -1,0 +1,427 @@
+{
+  "id": "boiler-long-56-lines",
+  "file": "boiler-long-56-lines.pdf",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Bristol Boiler Spares",
+      "vat_number": "GB 512 8664 09"
+    },
+    "invoice_number": "BBS-55204",
+    "invoice_date": "2026-11-17",
+    "due_date": "2026-12-17",
+    "po_number": "HPH-PO-2320",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 5,
+        "unit_price": 64.5,
+        "vat_rate": 20,
+        "line_total": 322.5
+      },
+      {
+        "description": "Condensate pipe 21.5mm, 3m",
+        "quantity": 2,
+        "unit_price": 5.25,
+        "vat_rate": 20,
+        "line_total": 10.5
+      },
+      {
+        "description": "Pump, A-rated 6m head",
+        "quantity": 5,
+        "unit_price": 142,
+        "vat_rate": 20,
+        "line_total": 710
+      },
+      {
+        "description": "Drain cock, 15mm",
+        "quantity": 5,
+        "unit_price": 2.45,
+        "vat_rate": 20,
+        "line_total": 12.25
+      },
+      {
+        "description": "Filling loop, braided",
+        "quantity": 4,
+        "unit_price": 9.8,
+        "vat_rate": 20,
+        "line_total": 39.2
+      },
+      {
+        "description": "15mm copper tube, 3m",
+        "quantity": 3,
+        "unit_price": 14.85,
+        "vat_rate": 20,
+        "line_total": 44.55
+      },
+      {
+        "description": "Pipe insulation 15mm, 2m",
+        "quantity": 3,
+        "unit_price": 1.35,
+        "vat_rate": 20,
+        "line_total": 4.05
+      },
+      {
+        "description": "Fernox F1 inhibitor, 500ml",
+        "quantity": 4,
+        "unit_price": 16.2,
+        "vat_rate": 20,
+        "line_total": 64.8
+      },
+      {
+        "description": "Pressure relief valve, 3 bar",
+        "quantity": 3,
+        "unit_price": 12.3,
+        "vat_rate": 20,
+        "line_total": 36.9
+      },
+      {
+        "description": "Diverter valve cartridge",
+        "quantity": 6,
+        "unit_price": 58.9,
+        "vat_rate": 20,
+        "line_total": 353.4
+      },
+      {
+        "description": "Lockshield valve, 15mm",
+        "quantity": 3,
+        "unit_price": 6.4,
+        "vat_rate": 20,
+        "line_total": 19.2
+      },
+      {
+        "description": "Expansion vessel, 8 litre",
+        "quantity": 1,
+        "unit_price": 39.5,
+        "vat_rate": 20,
+        "line_total": 39.5
+      },
+      {
+        "description": "22mm copper tube, 3m",
+        "quantity": 1,
+        "unit_price": 27.4,
+        "vat_rate": 20,
+        "line_total": 27.4
+      },
+      {
+        "description": "Fan assembly",
+        "quantity": 3,
+        "unit_price": 96.4,
+        "vat_rate": 20,
+        "line_total": 289.2
+      },
+      {
+        "description": "PTFE tape, 12m",
+        "quantity": 1,
+        "unit_price": 0.69,
+        "vat_rate": 20,
+        "line_total": 0.69
+      },
+      {
+        "description": "Flux and solder kit",
+        "quantity": 4,
+        "unit_price": 12.95,
+        "vat_rate": 20,
+        "line_total": 51.8
+      },
+      {
+        "description": "15mm compression elbow",
+        "quantity": 2,
+        "unit_price": 1.62,
+        "vat_rate": 20,
+        "line_total": 3.24
+      },
+      {
+        "description": "22mm compression tee",
+        "quantity": 3,
+        "unit_price": 4.18,
+        "vat_rate": 20,
+        "line_total": 12.54
+      },
+      {
+        "description": "Flue gasket set",
+        "quantity": 5,
+        "unit_price": 7.45,
+        "vat_rate": 20,
+        "line_total": 37.25
+      },
+      {
+        "description": "Pipe clips 15mm (pack of 20)",
+        "quantity": 6,
+        "unit_price": 3.6,
+        "vat_rate": 20,
+        "line_total": 21.6
+      },
+      {
+        "description": "Ignition electrode",
+        "quantity": 6,
+        "unit_price": 14.6,
+        "vat_rate": 20,
+        "line_total": 87.6
+      },
+      {
+        "description": "PCB, combi boiler (exchange)",
+        "quantity": 2,
+        "unit_price": 188,
+        "vat_rate": 20,
+        "line_total": 376
+      },
+      {
+        "description": "Plate heat exchanger",
+        "quantity": 1,
+        "unit_price": 117.8,
+        "vat_rate": 20,
+        "line_total": 117.8
+      },
+      {
+        "description": "Thermostatic radiator valve, 15mm",
+        "quantity": 1,
+        "unit_price": 18.75,
+        "vat_rate": 20,
+        "line_total": 18.75
+      },
+      {
+        "description": "Air vent, automatic",
+        "quantity": 2,
+        "unit_price": 6.2,
+        "vat_rate": 20,
+        "line_total": 12.4
+      },
+      {
+        "description": "15mm end-feed coupler (pack of 10)",
+        "quantity": 2,
+        "unit_price": 4.95,
+        "vat_rate": 20,
+        "line_total": 9.9
+      },
+      {
+        "description": "Isolating valve, 15mm",
+        "quantity": 6,
+        "unit_price": 3.1,
+        "vat_rate": 20,
+        "line_total": 18.6
+      },
+      {
+        "description": "Gas valve",
+        "quantity": 6,
+        "unit_price": 121.5,
+        "vat_rate": 20,
+        "line_total": 729
+      },
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 6,
+        "unit_price": 64.5,
+        "vat_rate": 20,
+        "line_total": 387
+      },
+      {
+        "description": "Ignition electrode",
+        "quantity": 3,
+        "unit_price": 14.6,
+        "vat_rate": 20,
+        "line_total": 43.8
+      },
+      {
+        "description": "22mm copper tube, 3m",
+        "quantity": 2,
+        "unit_price": 27.4,
+        "vat_rate": 20,
+        "line_total": 54.8
+      },
+      {
+        "description": "Diverter valve cartridge",
+        "quantity": 4,
+        "unit_price": 58.9,
+        "vat_rate": 20,
+        "line_total": 235.6
+      },
+      {
+        "description": "Fan assembly",
+        "quantity": 6,
+        "unit_price": 96.4,
+        "vat_rate": 20,
+        "line_total": 578.4
+      },
+      {
+        "description": "PCB, combi boiler (exchange)",
+        "quantity": 6,
+        "unit_price": 188,
+        "vat_rate": 20,
+        "line_total": 1128
+      },
+      {
+        "description": "Isolating valve, 15mm",
+        "quantity": 5,
+        "unit_price": 3.1,
+        "vat_rate": 20,
+        "line_total": 15.5
+      },
+      {
+        "description": "Expansion vessel, 8 litre",
+        "quantity": 6,
+        "unit_price": 39.5,
+        "vat_rate": 20,
+        "line_total": 237
+      },
+      {
+        "description": "Flux and solder kit",
+        "quantity": 2,
+        "unit_price": 12.95,
+        "vat_rate": 20,
+        "line_total": 25.9
+      },
+      {
+        "description": "Pipe insulation 15mm, 2m",
+        "quantity": 4,
+        "unit_price": 1.35,
+        "vat_rate": 20,
+        "line_total": 5.4
+      },
+      {
+        "description": "Lockshield valve, 15mm",
+        "quantity": 3,
+        "unit_price": 6.4,
+        "vat_rate": 20,
+        "line_total": 19.2
+      },
+      {
+        "description": "Pressure relief valve, 3 bar",
+        "quantity": 4,
+        "unit_price": 12.3,
+        "vat_rate": 20,
+        "line_total": 49.2
+      },
+      {
+        "description": "Filling loop, braided",
+        "quantity": 4,
+        "unit_price": 9.8,
+        "vat_rate": 20,
+        "line_total": 39.2
+      },
+      {
+        "description": "PTFE tape, 12m",
+        "quantity": 2,
+        "unit_price": 0.69,
+        "vat_rate": 20,
+        "line_total": 1.38
+      },
+      {
+        "description": "Pump, A-rated 6m head",
+        "quantity": 4,
+        "unit_price": 142,
+        "vat_rate": 20,
+        "line_total": 568
+      },
+      {
+        "description": "22mm compression tee",
+        "quantity": 2,
+        "unit_price": 4.18,
+        "vat_rate": 20,
+        "line_total": 8.36
+      },
+      {
+        "description": "15mm copper tube, 3m",
+        "quantity": 3,
+        "unit_price": 14.85,
+        "vat_rate": 20,
+        "line_total": 44.55
+      },
+      {
+        "description": "Condensate pipe 21.5mm, 3m",
+        "quantity": 2,
+        "unit_price": 5.25,
+        "vat_rate": 20,
+        "line_total": 10.5
+      },
+      {
+        "description": "15mm compression elbow",
+        "quantity": 1,
+        "unit_price": 1.62,
+        "vat_rate": 20,
+        "line_total": 1.62
+      },
+      {
+        "description": "15mm end-feed coupler (pack of 10)",
+        "quantity": 6,
+        "unit_price": 4.95,
+        "vat_rate": 20,
+        "line_total": 29.7
+      },
+      {
+        "description": "Air vent, automatic",
+        "quantity": 4,
+        "unit_price": 6.2,
+        "vat_rate": 20,
+        "line_total": 24.8
+      },
+      {
+        "description": "Plate heat exchanger",
+        "quantity": 5,
+        "unit_price": 117.8,
+        "vat_rate": 20,
+        "line_total": 589
+      },
+      {
+        "description": "Pipe clips 15mm (pack of 20)",
+        "quantity": 1,
+        "unit_price": 3.6,
+        "vat_rate": 20,
+        "line_total": 3.6
+      },
+      {
+        "description": "Gas valve",
+        "quantity": 2,
+        "unit_price": 121.5,
+        "vat_rate": 20,
+        "line_total": 243
+      },
+      {
+        "description": "Drain cock, 15mm",
+        "quantity": 2,
+        "unit_price": 2.45,
+        "vat_rate": 20,
+        "line_total": 4.9
+      },
+      {
+        "description": "Thermostatic radiator valve, 15mm",
+        "quantity": 2,
+        "unit_price": 18.75,
+        "vat_rate": 20,
+        "line_total": 37.5
+      },
+      {
+        "description": "Flue gasket set",
+        "quantity": 4,
+        "unit_price": 7.45,
+        "vat_rate": 20,
+        "line_total": 29.8
+      },
+      {
+        "description": "Fernox F1 inhibitor, 500ml",
+        "quantity": 5,
+        "unit_price": 16.2,
+        "vat_rate": 20,
+        "line_total": 81
+      }
+    ],
+    "net_total": 7967.33,
+    "vat_total": 1593.47,
+    "total": 9560.8,
+    "payment": {
+      "sort_code": "40-12-55",
+      "account_number": "27719046",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": []
+}

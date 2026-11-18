@@ -1,0 +1,65 @@
+{
+  "id": "boiler-due-before-issue",
+  "file": "boiler-due-before-issue.pdf",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Bristol Boiler Spares",
+      "vat_number": "GB 512 8664 09"
+    },
+    "invoice_number": "BBS-55191",
+    "invoice_date": "2026-11-15",
+    "due_date": "2026-10-15",
+    "po_number": "HPH-PO-2312",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 1,
+        "unit_price": 64.5,
+        "vat_rate": 20,
+        "line_total": 64.5
+      },
+      {
+        "description": "22mm compression tee",
+        "quantity": 4,
+        "unit_price": 4.18,
+        "vat_rate": 20,
+        "line_total": 16.72
+      },
+      {
+        "description": "Pump, A-rated 6m head",
+        "quantity": 2,
+        "unit_price": 142,
+        "vat_rate": 20,
+        "line_total": 284
+      },
+      {
+        "description": "PTFE tape, 12m",
+        "quantity": 2,
+        "unit_price": 0.69,
+        "vat_rate": 20,
+        "line_total": 1.38
+      }
+    ],
+    "net_total": 366.6,
+    "vat_total": 73.32,
+    "total": 439.92,
+    "payment": {
+      "sort_code": "40-12-55",
+      "account_number": "27719046",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "due_before_issue"
+  ],
+  "allowFlags": []
+}

@@ -1,0 +1,158 @@
+[
+  {
+    "id": "avon-invoice",
+    "file": "avon-invoice.pdf",
+    "set": "tuning",
+    "demo": {
+      "order": 1,
+      "title": "Parts invoice",
+      "blurb": "A clean invoice from a plumbing merchant."
+    }
+  },
+  {
+    "id": "severn-van-hire",
+    "file": "severn-van-hire.pdf",
+    "set": "tuning",
+    "demo": {
+      "order": 2,
+      "title": "Van hire",
+      "blurb": "A different layout, with dates written out in words."
+    }
+  },
+  {
+    "id": "boiler-spares-long",
+    "file": "boiler-spares-long.pdf",
+    "set": "tuning",
+    "demo": {
+      "order": 3,
+      "title": "Two-page invoice",
+      "blurb": "Twenty-eight lines across two pages."
+    }
+  },
+  {
+    "id": "clifton-receipt",
+    "file": "clifton-receipt.jpg",
+    "set": "tuning",
+    "demo": {
+      "order": 4,
+      "title": "Photo of a receipt",
+      "blurb": "A crumpled till receipt, photographed at an angle."
+    }
+  },
+  {
+    "id": "westcountry-wrong-totals",
+    "file": "westcountry-wrong-totals.pdf",
+    "set": "tuning",
+    "demo": {
+      "order": 5,
+      "title": "Totals that don’t add up",
+      "blurb": "One line and the total are wrong. Can it tell?"
+    }
+  },
+  {
+    "id": "harbour-waste-changed-bank",
+    "file": "harbour-waste-changed-bank.pdf",
+    "set": "tuning",
+    "demo": {
+      "order": 6,
+      "title": "Changed bank details",
+      "blurb": "New bank details, and a hidden note telling AI to approve it."
+    }
+  },
+  {
+    "id": "kingswood-credit-note",
+    "file": "kingswood-credit-note.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "heizteile-eur",
+    "file": "heizteile-eur.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "avon-scanned",
+    "file": "avon-scanned.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "avon-duplicate",
+    "file": "avon-duplicate.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "boiler-no-due-date",
+    "file": "boiler-no-due-date.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "redland-unknown-supplier",
+    "file": "redland-unknown-supplier.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "fuelpoint-statement",
+    "file": "fuelpoint-statement.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "kingswood-mixed-vat",
+    "file": "kingswood-mixed-vat.pdf",
+    "set": "tuning",
+    "demo": null
+  },
+  {
+    "id": "severn-vat-mismatch",
+    "file": "severn-vat-mismatch.pdf",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "westcountry-photo",
+    "file": "westcountry-photo.jpg",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "boiler-due-before-issue",
+    "file": "boiler-due-before-issue.pdf",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "kingswood-wrong-vat",
+    "file": "kingswood-wrong-vat.pdf",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "harbour-waste-genuine",
+    "file": "harbour-waste-genuine.pdf",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "avon-lines-vs-net",
+    "file": "avon-lines-vs-net.pdf",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "clifton-receipt-faded",
+    "file": "clifton-receipt-faded.jpg",
+    "set": "heldout",
+    "demo": null
+  },
+  {
+    "id": "boiler-long-56-lines",
+    "file": "boiler-long-56-lines.pdf",
+    "set": "heldout",
+    "demo": null
+  }
+]

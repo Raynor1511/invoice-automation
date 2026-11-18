@@ -1,0 +1,44 @@
+{
+  "id": "severn-vat-mismatch",
+  "file": "severn-vat-mismatch.pdf",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Severn Van Hire Ltd",
+      "vat_number": "GB 397 1058 22"
+    },
+    "invoice_number": "SVH/26/0951",
+    "invoice_date": "2026-11-14",
+    "due_date": "2026-11-28",
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Ford Transit Custom, 3-day hire",
+        "quantity": 3,
+        "unit_price": 42,
+        "vat_rate": null,
+        "line_total": 126
+      }
+    ],
+    "net_total": 126,
+    "vat_total": 25.2,
+    "total": 151.2,
+    "payment": {
+      "sort_code": "30-91-12",
+      "account_number": "61029384",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "vat_number_mismatch"
+  ],
+  "allowFlags": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "kingswood-mixed-vat",
+  "file": "kingswood-mixed-vat.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Kingswood Electrical Wholesale",
+      "vat_number": "GB 173 5509 26"
+    },
+    "invoice_number": "KEW-90233",
+    "invoice_date": "2026-11-09",
+    "due_date": "2026-12-09",
+    "po_number": "HPH-PO-2299",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Loft insulation roll, 200mm (energy-saving, 5%)",
+        "quantity": 4,
+        "unit_price": 31.5,
+        "vat_rate": 5,
+        "line_total": 126
+      },
+      {
+        "description": "Smart thermostat kit",
+        "quantity": 1,
+        "unit_price": 149,
+        "vat_rate": 20,
+        "line_total": 149
+      },
+      {
+        "description": "Cable ties (pack of 100)",
+        "quantity": 3,
+        "unit_price": 2.2,
+        "vat_rate": 20,
+        "line_total": 6.6
+      }
+    ],
+    "net_total": 281.6,
+    "vat_total": 37.42,
+    "total": 319.02,
+    "payment": {
+      "sort_code": "20-17-44",
+      "account_number": "83390175",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": []
+}

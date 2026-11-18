@@ -1,0 +1,68 @@
+{
+  "id": "avon-lines-vs-net",
+  "file": "avon-lines-vs-net.pdf",
+  "set": "heldout",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Avon Plumbing Supplies Ltd",
+      "vat_number": "GB 284 7193 05"
+    },
+    "invoice_number": "APS-104839",
+    "invoice_date": "2026-11-17",
+    "due_date": "2026-12-17",
+    "po_number": "HPH-PO-2318",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 5,
+        "unit_price": 64.5,
+        "vat_rate": null,
+        "line_total": 322.5
+      },
+      {
+        "description": "Pressure relief valve, 3 bar",
+        "quantity": 6,
+        "unit_price": 12.3,
+        "vat_rate": null,
+        "line_total": 73.8
+      },
+      {
+        "description": "22mm copper tube, 3m",
+        "quantity": 2,
+        "unit_price": 27.4,
+        "vat_rate": null,
+        "line_total": 54.8
+      },
+      {
+        "description": "Filling loop, braided",
+        "quantity": 4,
+        "unit_price": 9.8,
+        "vat_rate": null,
+        "line_total": 39.2
+      }
+    ],
+    "net_total": 999.99,
+    "vat_total": 98.06,
+    "total": 1098.05,
+    "payment": {
+      "sort_code": "20-45-77",
+      "account_number": "43817260",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "lines_vs_net"
+  ],
+  "allowFlags": [
+    "net_vat_total",
+    "vat_amount"
+  ]
+}

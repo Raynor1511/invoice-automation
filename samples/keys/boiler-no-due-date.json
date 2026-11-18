@@ -1,0 +1,58 @@
+{
+  "id": "boiler-no-due-date",
+  "file": "boiler-no-due-date.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": false,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Bristol Boiler Spares",
+      "vat_number": "GB 512 8664 09"
+    },
+    "invoice_number": "BBS-55168",
+    "invoice_date": "2026-11-13",
+    "due_date": null,
+    "po_number": null,
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 6,
+        "unit_price": 64.5,
+        "vat_rate": null,
+        "line_total": 387
+      },
+      {
+        "description": "Plate heat exchanger",
+        "quantity": 2,
+        "unit_price": 117.8,
+        "vat_rate": null,
+        "line_total": 235.6
+      },
+      {
+        "description": "Pump, A-rated 6m head",
+        "quantity": 2,
+        "unit_price": 142,
+        "vat_rate": null,
+        "line_total": 284
+      }
+    ],
+    "net_total": 906.6,
+    "vat_total": 181.32,
+    "total": 1087.92,
+    "payment": {
+      "sort_code": "40-12-55",
+      "account_number": "27719046",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "missing_field"
+  ],
+  "allowFlags": []
+}

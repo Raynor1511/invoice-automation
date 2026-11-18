@@ -1,0 +1,72 @@
+{
+  "id": "avon-scanned",
+  "file": "avon-scanned.pdf",
+  "set": "tuning",
+  "demo": null,
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Avon Plumbing Supplies Ltd",
+      "vat_number": "GB 284 7193 05"
+    },
+    "invoice_number": "APS-104801",
+    "invoice_date": "2026-11-10",
+    "due_date": "2026-12-10",
+    "po_number": "HPH-PO-2305",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Magnetic system filter, 22mm",
+        "quantity": 4,
+        "unit_price": 64.5,
+        "vat_rate": 20,
+        "line_total": 258
+      },
+      {
+        "description": "15mm end-feed coupler (pack of 10)",
+        "quantity": 1,
+        "unit_price": 4.95,
+        "vat_rate": 20,
+        "line_total": 4.95
+      },
+      {
+        "description": "22mm copper tube, 3m",
+        "quantity": 2,
+        "unit_price": 27.4,
+        "vat_rate": 20,
+        "line_total": 54.8
+      },
+      {
+        "description": "Thermostatic radiator valve, 15mm",
+        "quantity": 4,
+        "unit_price": 18.75,
+        "vat_rate": 20,
+        "line_total": 75
+      },
+      {
+        "description": "Lockshield valve, 15mm",
+        "quantity": 5,
+        "unit_price": 6.4,
+        "vat_rate": 20,
+        "line_total": 32
+      }
+    ],
+    "net_total": 424.75,
+    "vat_total": 84.95,
+    "total": 509.7,
+    "payment": {
+      "sort_code": "20-45-77",
+      "account_number": "43817260",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [],
+  "allowFlags": [
+    "uncertain_reading"
+  ]
+}

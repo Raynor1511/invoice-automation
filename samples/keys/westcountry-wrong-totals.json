@@ -1,0 +1,70 @@
+{
+  "id": "westcountry-wrong-totals",
+  "file": "westcountry-wrong-totals.pdf",
+  "set": "tuning",
+  "demo": {
+    "order": 5,
+    "title": "Totals that don’t add up",
+    "blurb": "One line and the total are wrong. Can it tell?"
+  },
+  "context": {
+    "today": "2026-11-18"
+  },
+  "lineVatPrinted": true,
+  "expected": {
+    "document_type": "invoice",
+    "supplier": {
+      "name": "Westcountry Tile & Bathroom",
+      "vat_number": "GB 845 2017 73"
+    },
+    "invoice_number": "WTB-30417",
+    "invoice_date": "2026-11-05",
+    "due_date": "2026-12-05",
+    "po_number": "HPH-PO-2302",
+    "currency": "GBP",
+    "line_items": [
+      {
+        "description": "Porcelain wall tile, matt white 300x600 (m²)",
+        "quantity": 14,
+        "unit_price": 32.5,
+        "vat_rate": 20,
+        "line_total": 455
+      },
+      {
+        "description": "Tile adhesive, flexible grey 20kg",
+        "quantity": 6,
+        "unit_price": 18.9,
+        "vat_rate": 20,
+        "line_total": 123.4
+      },
+      {
+        "description": "Grout, anthracite 5kg",
+        "quantity": 2,
+        "unit_price": 14.25,
+        "vat_rate": 20,
+        "line_total": 28.5
+      },
+      {
+        "description": "Walk-in shower screen, 1200mm",
+        "quantity": 1,
+        "unit_price": 389,
+        "vat_rate": 20,
+        "line_total": 389
+      }
+    ],
+    "net_total": 995.9,
+    "vat_total": 199.18,
+    "total": 1295.08,
+    "payment": {
+      "sort_code": "60-83-01",
+      "account_number": "55102938",
+      "iban": null
+    },
+    "has_injection": false
+  },
+  "expectFlags": [
+    "line_math",
+    "net_vat_total"
+  ],
+  "allowFlags": []
+}
