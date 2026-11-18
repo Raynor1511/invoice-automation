@@ -1,5 +1,5 @@
 // Runs the extractor over the test set and scores every document against its answer key.
-//   npx tsx eval/run.ts [--model claude-opus-5-5] [--effort low] [--set tuning] [--only id,id] [--concurrency 3]
+//   npx tsx eval/run.ts [--model claude-haiku-5-5] [--effort low] [--set tuning] [--only id,id] [--concurrency 3]
 // The held-out documents (--set heldout or all) are kept out of tuning: they need --final, and each
 // such run is logged in eval/heldout-log.md, so the published results are their first reading.
 // Every call is billed. Results: eval/runs/<time>_<model>_<effort>_<set>.json
@@ -12,7 +12,7 @@ import { scoreDocument, summarise, type Key, type RunRecord } from './score.ts';
 
 const { values: args } = parseArgs({
   options: {
-    model: { type: 'string', default: 'claude-opus-5-5' },
+    model: { type: 'string', default: 'claude-haiku-5-5' },
     effort: { type: 'string', default: 'low' },
     set: { type: 'string', default: 'tuning' },
     only: { type: 'string' },

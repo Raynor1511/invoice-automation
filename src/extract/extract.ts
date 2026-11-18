@@ -7,6 +7,8 @@ import type { CheckedFile } from './files.ts';
 
 export type ModelId = 'claude-opus-5-5' | 'claude-sonnet-5-5' | 'claude-haiku-5-5';
 export type Effort = 'low' | 'medium' | 'high';
+/** Chosen by measurement: all three models read the held-out set equally well; Haiku costs least (eval/REPORT.md). */
+export const DEFAULT_MODEL: ModelId = 'claude-haiku-5-5';
 
 /** USD per million tokens (input, output, cache read). Haiku 5.5 doubles above 100K input tokens; documents here stay far below. */
 export const PRICES: Record<ModelId, { input: number; output: number; cacheRead: number }> = {
@@ -48,7 +50,7 @@ export function costOf(model: ModelId, u: Usage): number {
 }
 
 export async function extractDocument(client: Anthropic, file: CheckedFile, opts: ExtractOptions = {}): Promise<ExtractResult> {
-  const model = opts.model ?? 'claude-opus-5-5';
+  const model = opts.model ?? DEFAULT_MODEL;
   const started = Date.now();
   const response = await client.messages.parse(
     {

@@ -4,12 +4,12 @@
 import { readFileSync } from 'node:fs';
 import Anthropic from '@anthropic-ai/sdk';
 import { checkFile } from '../src/extract/files.ts';
-import { extractDocument, type Effort, type ModelId } from '../src/extract/extract.ts';
+import { DEFAULT_MODEL, extractDocument, type Effort, type ModelId } from '../src/extract/extract.ts';
 import { checkExtraction } from '../src/extract/checks.ts';
 
 process.loadEnvFile('.env');
 const id = process.argv[2] ?? 'harbour-waste-changed-bank';
-const model = (process.argv[3] ?? 'claude-opus-5-5') as ModelId;
+const model = (process.argv[3] ?? DEFAULT_MODEL) as ModelId;
 const effort = (process.argv[4] ?? 'low') as Effort;
 
 const key = JSON.parse(readFileSync(`samples/keys/${id}.json`, 'utf8'));
