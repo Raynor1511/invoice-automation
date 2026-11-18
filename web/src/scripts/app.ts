@@ -3,8 +3,9 @@
 import type { Extraction } from '../../../src/extract/schema.ts';
 import type { Flag } from '../../../src/extract/checks.ts';
 import { showDocument } from './preview.ts';
+import { inboxSection } from './inbox.ts';
 
-type Config = { turnstileSiteKey: string | null; live: boolean; limits: { maxMb: number; maxPages: number }; samples: { id: string; file: string; title: string; url: string; mediaType: string }[] };
+type Config = { turnstileSiteKey: string | null; live: boolean; limits: { maxMb: number; maxPages: number }; inbox: { sheetUrl: string } | null; samples: { id: string; file: string; title: string; url: string; mediaType: string }[] };
 type Result = {
   ok: true;
   source: 'live' | 'saved';
@@ -240,7 +241,7 @@ function showError(message: string) {
   $('#exports').hidden = true;
 }
 
-async function run(cfg: Config, name: string, bytes: ArrayBuffer, mediaType: string, request: (token: string) => Promise<Response>) {
+async function run(cfg: Config, name: string, bytes: ArrayBuffer, mediaType: string, request: (token: string) => Promise<Response>, sample: string | null = null) {
   if (busy) return;
   current = null;
   $('#result').hidden = false;
@@ -264,6 +265,20 @@ async function run(cfg: Config, name: string, bytes: ArrayBuffer, mediaType: str
     current = { result: body, name };
     setBusy(false);
     renderResult(body);
+    // Samples can go on through the n8n workflow (uploads stay on this page: nothing is stored).
+    if (sample && cfg.inbox) {
+      $('#reading').append(
+        inboxSection({
+          sample,
+          sheetUrl: cfg.inbox.sheetUrl,
+          token: () => humanToken(cfg),
+          onBusy: (on) => {
+            busy = on;
+            document.querySelectorAll<HTMLButtonElement>('[data-sample], #upload-btn').forEach((b) => (b.disabled = on));
+          },
+        }),
+      );
+    }
   } catch (err) {
     setBusy(false);
     showError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
@@ -282,6 +297,7 @@ async function main() {
       const bytes = await (await fetch(s.url)).arrayBuffer();
       await run(cfg, s.title, bytes, s.mediaType, (token) =>
         fetch(`/api/extract/sample/${s.id}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token }) }),
+        s.id,
       );
     });
   });

@@ -187,6 +187,26 @@ const builder = { name: 'Raynors.dev', url: 'https://raynors.dev' };
   #reading :global(.muted) { color: var(--muted); font-size: 15px; }
   #reading :global(.meta) { margin: 20px 0 0; font-size: 13.5px; color: var(--faint); }
   #turnstile:not(:empty) { margin: 4px 0 14px; }
+  #reading :global(.inbox) { margin-top: 26px; padding-top: 18px; border-top: 2px solid var(--line); }
+  #reading :global(.inbox h3) { margin-top: 0; }
+  #reading :global(.inbox-result) { margin-top: 14px; }
+  #reading :global(.working) { color: var(--brand-dark); font-weight: 600; }
+  #reading :global(.inbox-error) { color: var(--danger); font-weight: 600; }
+  #reading :global(.filed) { padding: 10px 14px; border-radius: 10px; margin-bottom: 10px; }
+  #reading :global(.filed.warn), #reading :global(.decided.warn) { background: var(--accent-soft); color: var(--warn-ink); }
+  #reading :global(.filed.good), #reading :global(.decided.good) { background: var(--ok-soft); color: var(--ok); }
+  #reading :global(.filed.bad), #reading :global(.decided.bad) { background: var(--danger-soft); color: var(--danger); }
+  #reading :global(.steps) { margin: 0 0 12px; padding-left: 1.3em; font-size: 15px; color: var(--text); }
+  #reading :global(.slack-card) { border: 1px solid var(--line-2); border-left: 4px solid #4a154b; border-radius: 10px; padding: 12px 14px; margin: 6px 0 14px; background: #fff; }
+  #reading :global(.card-from) { margin: 0 0 6px; font-size: 13.5px; color: var(--muted); }
+  #reading :global(.card-from .bot) { font-weight: 800; color: var(--ink); }
+  #reading :global(.card-title) { margin: 0; font-weight: 800; color: var(--ink); }
+  #reading :global(.card-meta) { margin: 2px 0 6px; font-size: 14.5px; color: var(--muted); }
+  #reading :global(.card-checks) { margin: 0 0 10px; padding-left: 1.2em; font-size: 14.5px; }
+  #reading :global(.card-actions) { display: flex; gap: 10px; flex-wrap: wrap; }
+  #reading :global(.card-note) { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); }
+  #reading :global(.card-note:empty) { display: none; }
+  #reading :global(.decided) { padding: 8px 12px; border-radius: 8px; margin: 0; }
   .exports { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 
   .footer { background: var(--brand-ink); color: rgba(255,255,255,.75); padding: 22px 0; font-size: 14px; }
