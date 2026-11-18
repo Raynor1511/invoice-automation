@@ -13,6 +13,7 @@ import type { ExtractResult } from '../extract/extract.ts';
 import type { Extraction } from '../extract/schema.ts';
 import { checkExtraction } from '../extract/checks.ts';
 import { Guard, REFUSAL_MESSAGES, londonDay, verifyTurnstile } from './guard.ts';
+import { ROW_ID, SESSION, slackDecision, verifySlackSignature, type N8nClient } from './inbox.ts';
 
 export type Sample = { id: string; file: string; title: string; blurb: string; order: number };
 export type SavedReading = { model: string; extraction: Extraction; costUsd: number; ms: number };
@@ -27,6 +28,8 @@ export type AppOptions = {
   /** hostname: what Turnstile must report; defaults to the origin's (Cloudflare's test keys report example.com). */
   turnstile?: { siteKey: string; secret: string; hostname?: string; fetchImpl?: typeof fetch } | null;
   guard?: Guard;
+  /** The n8n workflow ("Harbourline's inbox"); null turns the inbox part of the page off. */
+  inbox?: { client: N8nClient; slackSigningSecret: string | null; sheetUrl: string } | null;
   trustProxy?: boolean;
   log?: (entry: Record<string, unknown>) => void;
   now?: () => Date;
@@ -105,6 +108,8 @@ function readBody(req: IncomingMessage, max: number): Promise<Buffer> {
 
 export function createApp(o: AppOptions) {
   const guard = o.guard ?? new Guard();
+  // Approve/Reject clicks on the page cost nothing, so they get their own, looser limit.
+  const decisions = new Guard({ perTenMinutes: 30, perDay: 200, dailySpendUsd: Number.POSITIVE_INFINITY });
   const log = o.log ?? (() => {});
   const now = o.now ?? (() => new Date());
   const statics = o.staticFiles ?? new Map();
@@ -164,6 +169,7 @@ export function createApp(o: AppOptions) {
           turnstileSiteKey: o.turnstile?.siteKey ?? null,
           live: !guard.capReached(),
           limits: { maxMb: LIMITS.maxBytes / 1024 / 1024, maxPages: LIMITS.maxPages },
+          inbox: o.inbox ? { sheetUrl: o.inbox.sheetUrl } : null,
           samples: [...o.samples].sort((a, b) => a.order - b.order).map((s) => ({ ...s, url: `/samples/${s.file}`, mediaType: s.file.endsWith('.pdf') ? 'application/pdf' : 'image/jpeg' })),
         });
         return 200;
@@ -190,8 +196,73 @@ export function createApp(o: AppOptions) {
     }
 
     if (req.method !== 'POST') throw new HttpError(405, 'method', 'Method not allowed.');
+
+    // Slack's button clicks: checked against the signing secret, answered at once (Slack allows three
+    // seconds), then passed to n8n on the private network.
+    if (p === '/slack/interactions') {
+      if (!o.inbox?.slackSigningSecret) throw new HttpError(404, 'not_found', 'Not found.');
+      const body = (await readBody(req, 64 * 1024)).toString('utf8');
+      const ok = verifySlackSignature(o.inbox.slackSigningSecret, String(req.headers['x-slack-request-timestamp'] ?? ''), body, String(req.headers['x-slack-signature'] ?? ''), Math.floor(now().getTime() / 1000));
+      if (!ok) throw new HttpError(401, 'signature', 'Unauthorised.');
+      res.writeHead(200, { 'Content-Length': '0' });
+      res.end();
+      const d = slackDecision(body);
+      if (d) o.inbox.client.decide(d).catch((err) => log({ level: 'error', path: p, error: err instanceof Error ? err.message : String(err) }));
+      return 200;
+    }
+
     if (req.headers.origin !== o.origin) throw new HttpError(403, 'origin', 'Requests must come from the demo page.');
     const visitor = guard.visitor(clientIp(req));
+    const readJson = async () => {
+      if (!String(req.headers['content-type'] ?? '').startsWith('application/json')) throw new HttpError(415, 'content_type', 'Expected JSON.');
+      try {
+        return JSON.parse((await readBody(req, 4096)).toString('utf8')) as Record<string, unknown>;
+      } catch {
+        throw new HttpError(400, 'bad_request', 'The request could not be read.');
+      }
+    };
+
+    // "Send to Harbourline's inbox": the n8n workflow reads the sample, checks it against this visitor's
+    // earlier rows, adds it to the ledger and, if anything is flagged, asks for approval in Slack.
+    const inboxMatch = /^\/api\/inbox\/sample\/([a-z0-9-]+)$/.exec(p);
+    if (inboxMatch && o.inbox) {
+      if (!sampleById.has(inboxMatch[1]!)) throw new HttpError(404, 'not_found', 'There is no sample with that name.');
+      const b = await readJson();
+      const session = String(b.session ?? '');
+      if (!SESSION.test(session)) throw new HttpError(400, 'bad_request', 'The request could not be read.');
+      if (guard.capReached()) throw new HttpError(429, 'spend_cap', REFUSAL_MESSAGES.spend_cap);
+      const take = guard.take(visitor);
+      if (!take.ok) throw new HttpError(429, take.reason, REFUSAL_MESSAGES[take.reason]);
+      await humanCheck(req, String(b.token ?? ''));
+      let result: unknown;
+      try {
+        result = await o.inbox.client.inbox({ sample: inboxMatch[1]!, session });
+      } catch (err) {
+        log({ level: 'error', path: p, error: err instanceof Error ? err.message : String(err) });
+        throw new HttpError(502, 'workflow', "The workflow didn't answer. Please try again in a minute.");
+      }
+      send(res, 200, result);
+      return 200;
+    }
+
+    if (p === '/api/inbox/decision' && o.inbox) {
+      const b = await readJson();
+      const session = String(b.session ?? '');
+      const row = String(b.row ?? '');
+      const action = b.action === 'approve' || b.action === 'reject' ? b.action : null;
+      if (!SESSION.test(session) || !ROW_ID.test(row) || !action) throw new HttpError(400, 'bad_request', 'The request could not be read.');
+      const take = decisions.take(visitor);
+      if (!take.ok) throw new HttpError(429, take.reason, 'Too many clicks in a short time. Please wait a few minutes.');
+      let result: unknown;
+      try {
+        result = await o.inbox.client.decide({ source: 'page', action, row, session, by: 'A website visitor' });
+      } catch (err) {
+        log({ level: 'error', path: p, error: err instanceof Error ? err.message : String(err) });
+        throw new HttpError(502, 'workflow', "The workflow didn't answer. Please try again in a minute.");
+      }
+      send(res, 200, result);
+      return 200;
+    }
 
     const sampleMatch = /^\/api\/extract\/sample\/([a-z0-9-]+)$/.exec(p);
     if (sampleMatch) {
@@ -259,6 +330,6 @@ export function createApp(o: AppOptions) {
       }
     }
     // Metadata only: never the file, the reading or the visitor's address.
-    if (url.pathname.startsWith('/api/extract')) log({ path: url.pathname, status, code, ms: Date.now() - started, spentToday: Number(guard.spentToday().toFixed(4)) });
+    if (url.pathname.startsWith('/api/extract') || url.pathname.startsWith('/api/inbox')) log({ path: url.pathname, status, code, ms: Date.now() - started, spentToday: Number(guard.spentToday().toFixed(4)) });
   };
 }

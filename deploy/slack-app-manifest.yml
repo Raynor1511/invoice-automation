@@ -1,0 +1,28 @@
+# Slack app for the invoice approval step. Paste at api.slack.com/apps -> Create New App ->
+# From a manifest (YAML tab), in the demo workspace.
+display_information:
+  name: Harbourline Invoices
+  description: Approve or reject flagged supplier invoices for the Harbourline demo (a fictional company).
+  background_color: "#0d6b63"
+features:
+  bot_user:
+    display_name: Harbourline Invoices
+    always_online: true
+oauth_config:
+  scopes:
+    bot:
+      # Post approval cards, alerts and the weekly summary, and update a card once it has been decided.
+      - chat:write
+      # Look up the #invoices and #alerts channel IDs.
+      - channels:read
+      # Show who approved or rejected an invoice in the ledger.
+      - users:read
+settings:
+  interactivity:
+    is_enabled: true
+    # Button clicks go to the demo service, which checks Slack's signature and passes them to n8n
+    # on the private network (n8n itself has no public address).
+    request_url: https://invoices.raynors.dev/slack/interactions
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
