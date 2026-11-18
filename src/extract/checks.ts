@@ -49,6 +49,13 @@ function parseIsoDate(s: string | null): Date | null | 'invalid' {
   return d.getUTCMonth() === Number(m[2]) - 1 && d.getUTCDate() === Number(m[3]) ? d : 'invalid';
 }
 const DAY = 86_400_000;
+/** Shortens a quote at a word boundary, so a message never ends mid-word. */
+export function clip(s: string, max = 140): string {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const space = cut.lastIndexOf(' ');
+  return `${(space > max * 0.6 ? cut.slice(0, space) : cut).replace(/[\s,;:.]+$/, '')}…`;
+}
 
 export function checkExtraction(x: Extraction, ctx: CheckContext): CheckResult {
   const flags: Flag[] = [];
@@ -147,7 +154,7 @@ export function checkExtraction(x: Extraction, ctx: CheckContext): CheckResult {
 
   for (const u of x.uncertain) add('uncertain_reading', 'warning', u.field, `Hard to read: ${u.reason}`);
   for (const s of x.suspicious_content)
-    add('suspicious_content', 'error', 'document', `The document contains text aimed at the reader or an AI, which was ignored: “${s.text.slice(0, 140)}”.`);
+    add('suspicious_content', 'error', 'document', `The document contains text aimed at the reader or an AI, which was ignored: “${clip(s.text)}”.`);
 
   return { flags, supplier, computed: { linesNet, vat } };
 }
