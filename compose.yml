@@ -1,5 +1,9 @@
-# On the VPS: /srv/invoice-automation. The demo joins the shared "web" network, where the edge
-# Caddy (raynors-infra) routes invoices.raynors.dev to it; it publishes no ports.
+# On the VPS: /srv/invoice-automation.
+#   invoice-demo  the page and API; on the shared "web" network, where the edge Caddy (raynors-infra)
+#                 routes invoices.raynors.dev to it, and on this project's private network.
+#   invoices-n8n  the workflow; private network only. No public path: the demo service forwards to it,
+#                 and its editor is bound to the server's 127.0.0.1, reached through an SSH tunnel:
+#                 ssh -N -L 5679:127.0.0.1:5679 raynors-vps  ->  http://localhost:5679
 #   docker compose up -d --build
 name: invoices
 
@@ -15,13 +19,53 @@ services:
       TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:?Set TURNSTILE_SITE_KEY in .env}
       TURNSTILE_SECRET: ${TURNSTILE_SECRET:?Set TURNSTILE_SECRET in .env}
       DAILY_SPEND_USD: ${DAILY_SPEND_USD:-1}
+      # The inbox (n8n workflow). Without INTERNAL_KEY and SHEET_URL the page only reads documents.
+      INTERNAL_KEY: ${INTERNAL_KEY:-}
+      SHEET_URL: ${SHEET_URL:-}
+      SLACK_SIGNING_SECRET: ${SLACK_SIGNING_SECRET:-}
+      N8N_URL: http://invoices-n8n:5678
     read_only: true
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
     mem_limit: 256m
     tmpfs: [/tmp]
-    networks: [web]
+    networks: [web, invoices]
+
+  invoices-n8n:
+    image: n8nio/n8n:2.46.7
+    container_name: invoices-n8n
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5679:5678" # editor: server-local only, via the SSH tunnel
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: "5678"
+      N8N_PROTOCOL: http
+      N8N_EDITOR_BASE_URL: http://localhost:5679
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:?N8N_ENCRYPTION_KEY must stay the same, or stored credentials can't be decrypted}
+      # Plain-http cookie is fine: the editor is only reachable through the SSH tunnel.
+      N8N_SECURE_COOKIE: "false"
+      GENERIC_TIMEZONE: Europe/London
+      TZ: Europe/London
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_PERSONALIZATION_ENABLED: "false"
+      N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
+      EXECUTIONS_DATA_PRUNE: "true"
+      EXECUTIONS_DATA_MAX_AGE: "336" # hours (14 days)
+      EXECUTIONS_DATA_PRUNE_MAX_COUNT: "5000"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 1g
+    pids_limit: 512
+    networks: [invoices]
 
 networks:
   web:
     external: true
+  invoices:
+    name: invoices-private
+
+volumes:
+  n8n_data:
