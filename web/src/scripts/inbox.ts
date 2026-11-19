@@ -89,9 +89,11 @@ function card(row: Row, decide: (action: 'approve' | 'reject') => Promise<Decide
 /**
  * Adds the inbox section to the result panel for a sample. `token` gets a Turnstile token.
  */
-export function inboxSection(opts: { sample: string; sheetUrl: string; token: () => Promise<string>; onBusy: (busy: boolean) => void }) {
+export function inboxSection(opts: { sample: string; sheetUrl: string; token: (host: HTMLElement, prompt: HTMLElement) => Promise<string>; onBusy: (busy: boolean) => void }) {
   const session = demoSession();
   const out = h('div', { class: 'inbox-result', 'aria-live': 'polite' });
+  // If Cloudflare asks for a click, its box appears here, right under the button.
+  const check = h('div', { class: 'inbox-turnstile' });
   const send = h('button', { type: 'button', class: 'btn btn-brand' }, 'Send to the inbox');
   const ledgerLink = () => h('a', { href: opts.sheetUrl, target: '_blank', rel: 'noopener' }, 'Open the purchase ledger');
   const section = h(
@@ -100,6 +102,7 @@ export function inboxSection(opts: { sample: string; sheetUrl: string; token: ()
     h('h3', {}, "Send to Harbourline's inbox"),
     h('p', { class: 'muted' }, 'An n8n workflow reads it, checks it against invoices already recorded, adds it to the purchase ledger (a Google Sheet), and posts an approval card to Slack if anything needs a person.'),
     send,
+    check,
     out,
   );
 
@@ -111,9 +114,10 @@ export function inboxSection(opts: { sample: string; sheetUrl: string; token: ()
   send.addEventListener('click', async () => {
     send.disabled = true;
     opts.onBusy(true);
-    out.replaceChildren(h('p', { class: 'working' }, 'The workflow is reading and filing the invoice…'));
+    const working = h('p', { class: 'working' }, 'The workflow is reading and filing the invoice…');
+    out.replaceChildren(working);
     try {
-      const token = await opts.token();
+      const token = await opts.token(check, working);
       const res = await fetch(`/api/inbox/sample/${opts.sample}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session, token }) });
       const r = (await res.json()) as SendReply;
       if (!r.ok) throw new Error(r.message ?? 'The workflow did not finish. Please try again.');

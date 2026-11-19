@@ -50,46 +50,73 @@ function date(v: string | null) {
 
 // --- Turnstile ---------------------------------------------------------------------------------
 
-type TurnstileApi = { render: (el: HTMLElement, o: Record<string, unknown>) => string; execute: (id: string) => void; reset: (id: string) => void };
+type TurnstileApi = {
+  render: (el: HTMLElement, o: Record<string, unknown>) => string;
+  execute: (id: string) => void;
+  reset: (id: string) => void;
+  remove: (id: string) => void;
+};
 declare global {
   interface Window { turnstile?: TurnstileApi }
 }
-let widget: string | null = null;
-let pending: { resolve: (t: string) => void; reject: (e: Error) => void } | null = null;
+let script: Promise<void> | null = null;
+let widget: { id: string; host: HTMLElement } | null = null;
+let pending: { resolve: (t: string) => void; reject: (e: Error) => void; prompt: HTMLElement; text: string; host: HTMLElement } | null = null;
 
-function loadTurnstile(siteKey: string): Promise<void> {
-  return new Promise((resolve, reject) => {
+function loadTurnstile(): Promise<void> {
+  script ??= new Promise((resolve, reject) => {
     const s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
     s.async = true;
-    s.onload = () => {
-      widget = window.turnstile!.render($('#turnstile'), {
-        sitekey: siteKey,
-        execution: 'execute',
-        appearance: 'interaction-only',
-        callback: (t: string) => pending?.resolve(t),
-        // Shown only when Cloudflare wants a click; the box sits in the result panel, where the visitor is looking.
-        'before-interactive-callback': () => ($('#status').textContent = 'Please tick the box to confirm you are a person.'),
-        'after-interactive-callback': () => ($('#status').textContent = 'Reading the document…'),
-        'error-callback': () => pending?.reject(new Error('turnstile')),
-      });
-      resolve();
+    s.onload = () => resolve();
+    s.onerror = () => {
+      script = null;
+      reject(new Error('turnstile'));
     };
-    s.onerror = () => reject(new Error('turnstile'));
     document.head.append(s);
   });
+  return script;
 }
 
-async function humanToken(cfg: Config): Promise<string> {
+/**
+ * A Turnstile token. `host` is where the box appears if Cloudflare asks for a click (next to what the
+ * visitor just pressed), and `prompt` is the line of text that asks them to tick it. A rendered widget
+ * can't be moved (its iframe would reload), so it is re-rendered when the place changes.
+ */
+async function humanToken(cfg: Config, host: HTMLElement = $('#turnstile'), prompt: HTMLElement = $('#status')): Promise<string> {
   if (!cfg.turnstileSiteKey) return ''; // local development
-  if (!widget) await loadTurnstile(cfg.turnstileSiteKey);
-  const token = new Promise<string>((resolve, reject) => (pending = { resolve, reject }));
-  window.turnstile!.execute(widget!);
+  await loadTurnstile();
+  const ts = window.turnstile!;
+  if (widget && widget.host !== host) {
+    ts.remove(widget.id);
+    widget = null;
+  }
+  if (!widget) {
+    const id = ts.render(host, {
+      sitekey: cfg.turnstileSiteKey,
+      execution: 'execute',
+      appearance: 'interaction-only',
+      callback: (t: string) => pending?.resolve(t),
+      // Only when Cloudflare wants a click: say so, and bring the box into view.
+      'before-interactive-callback': () => {
+        if (!pending) return;
+        pending.prompt.textContent = 'Please tick the box to confirm you are a person.';
+        pending.host.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+      },
+      'after-interactive-callback': () => {
+        if (pending) pending.prompt.textContent = pending.text;
+      },
+      'error-callback': () => pending?.reject(new Error('turnstile')),
+    });
+    widget = { id, host };
+  }
+  const token = new Promise<string>((resolve, reject) => (pending = { resolve, reject, prompt, text: prompt.textContent ?? '', host }));
+  ts.execute(widget.id);
   try {
     return await token;
   } finally {
     pending = null;
-    window.turnstile!.reset(widget!);
+    ts.reset(widget.id);
   }
 }
 
@@ -256,7 +283,8 @@ async function run(cfg: Config, name: string, bytes: ArrayBuffer, mediaType: str
     return 0;
   });
   try {
-    const token = await humanToken(cfg).catch(() => {
+    // While live readings are paused, samples come from saved readings and need no check.
+    const token = await (sample && !cfg.live ? Promise.resolve('') : humanToken(cfg)).catch(() => {
       throw new Error('The check that you are a person did not go through. Please reload the page and try again.');
     });
     const res = await request(token);
@@ -271,7 +299,7 @@ async function run(cfg: Config, name: string, bytes: ArrayBuffer, mediaType: str
         inboxSection({
           sample,
           sheetUrl: cfg.inbox.sheetUrl,
-          token: () => humanToken(cfg),
+          token: (host, prompt) => humanToken(cfg, host, prompt),
           onBusy: (on) => {
             busy = on;
             document.querySelectorAll<HTMLButtonElement>('[data-sample], #upload-btn').forEach((b) => (b.disabled = on));
