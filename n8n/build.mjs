@@ -187,7 +187,9 @@ return [{ json: {
   reply: { ok: true, row: pub, flags: extract.flags, reading: extract.reading, supplierOnFile: extract.supplier, source: extract.source, model: extract.model, costUsd: extract.costUsd, seconds: extract.seconds, slack: row.status === STATUS.review, sheetUrl: '__ENV__SHEET_URL' },
 } }];`),
     // RAW: values are stored exactly as given, so text from a document can never become a formula.
-    sheetsNode('Add to the ledger', [1320, 300], 'POST', `${SHEETS}/values/${LEDGER_RANGE}!A1:T1:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`, '={{ JSON.stringify({ values: [$json.values] }) }}'),
+    // OVERWRITE: write into the next empty row, which keeps the formatting the setup script gave it
+    // (INSERT_ROWS would add a row that copies the formatting of the row above: the header's, at first).
+    sheetsNode('Add to the ledger', [1320, 300], 'POST', `${SHEETS}/values/${LEDGER_RANGE}!A1:T1:append?valueInputOption=RAW&insertDataOption=OVERWRITE`, '={{ JSON.stringify({ values: [$json.values] }) }}'),
     ifTrue('Needs review?', [1540, 300], `$('Ledger row').first().json.row.status === 'Needs review'`),
     slackNode('Post approval card', [1760, 160], 'chat.postMessage', `={{ JSON.stringify({ channel: '__ENV__SLACK_INVOICES_CHANNEL', ...$('Ledger row').first().json.card }) }}`),
     sheetsNode(

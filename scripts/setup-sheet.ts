@@ -55,7 +55,8 @@ const range = (c0: number, c1: number, r0 = 1, r1 = 2000) => ({ sheetId: sid, st
 fmt.push(
   { updateSheetProperties: { properties: { sheetId: sid, index: 0, gridProperties: { frozenRowCount: 1, frozenColumnCount: 1 } }, fields: 'index,gridProperties.frozenRowCount,gridProperties.frozenColumnCount' } },
   { repeatCell: { range: range(0, COLUMNS.length, 0, 1), cell: { userEnteredFormat: { textFormat: { bold: true, foregroundColor: { red: 1, green: 1, blue: 1 } }, backgroundColor: { red: 0.031, green: 0.216, blue: 0.2 }, verticalAlignment: 'MIDDLE' } }, fields: 'userEnteredFormat(textFormat,backgroundColor,verticalAlignment)' } },
-  { repeatCell: { range: range(0, COLUMNS.length), cell: { userEnteredFormat: { verticalAlignment: 'TOP', wrapStrategy: 'CLIP' } }, fields: 'userEnteredFormat(verticalAlignment,wrapStrategy)' } },
+  // Data rows: plain text on white (also repairs rows that once picked up the header's formatting).
+  { repeatCell: { range: range(0, COLUMNS.length), cell: { userEnteredFormat: { verticalAlignment: 'TOP', wrapStrategy: 'CLIP', backgroundColor: { red: 1, green: 1, blue: 1 }, textFormat: { bold: false, foregroundColor: { red: 0.13, green: 0.2, blue: 0.23 } } } }, fields: 'userEnteredFormat(verticalAlignment,wrapStrategy,backgroundColor,textFormat)' } },
 );
 COLUMNS.forEach((c, i) => {
   fmt.push({ updateDimensionProperties: { range: { sheetId: sid, dimension: 'COLUMNS', startIndex: i, endIndex: i + 1 }, properties: { pixelSize: c.width, hiddenByUser: Boolean(c.hidden) }, fields: 'pixelSize,hiddenByUser' } });

@@ -137,7 +137,7 @@
       ],
       "parameters": {
         "method": "POST",
-        "url": "https://sheets.googleapis.com/v4/spreadsheets/__ENV__SHEET_ID/values/'Purchase%20ledger'!A1:T1:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS",
+        "url": "https://sheets.googleapis.com/v4/spreadsheets/__ENV__SHEET_ID/values/'Purchase%20ledger'!A1:T1:append?valueInputOption=RAW&insertDataOption=OVERWRITE",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "googleApi",
         "sendBody": true,
