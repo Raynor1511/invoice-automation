@@ -46,7 +46,8 @@ describe('workflow logic', () => {
     const ok = applyDecision([row], fromPage, now);
     expect(ok).toMatchObject({ ok: true, row: { status: STATUS.approved, decidedBy: 'A website visitor', decidedAt: '2026-11-19 10:32:05', rowNumber: 2 } });
     expect(applyDecision([ok.row!], { ...fromPage, action: 'reject' }, now)).toMatchObject({ ok: false, reason: 'already_decided' });
-    expect(applyDecision([row], { source: 'slack', action: 'reject', row: row.id, session: null, by: 'sam (Slack)' }, now)).toMatchObject({ ok: true, row: { status: STATUS.rejected } });
+    // A Slack decision records no Slack name: the ledger is public in the demo.
+    expect(applyDecision([row], { source: 'slack', action: 'reject', row: row.id, session: null, by: 'sam (Slack)' }, now)).toMatchObject({ ok: true, row: { status: STATUS.rejected, decidedBy: 'A manager (Slack)' } });
     expect(applyDecision([row], { ...fromPage, row: '=HYPERLINK(1)' }, now)).toEqual({ ok: false, reason: 'invalid' });
   });
 

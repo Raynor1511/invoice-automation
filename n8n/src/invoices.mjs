@@ -132,7 +132,9 @@ export function applyDecision(rows, d, now) {
   if (!row) return { ok: false, reason: 'not_found' };
   if (d.source === 'page' && row.session !== d.session) return { ok: false, reason: 'not_found' };
   if (row.status !== STATUS.review) return { ok: false, reason: 'already_decided', row };
-  const updated = { ...row, status: d.action === 'approve' ? STATUS.approved : STATUS.rejected, decidedBy: String(d.by || 'Someone').slice(0, 80), decidedAt: londonStamp(now) };
+  // The ledger is public in the demo, so a Slack decision never records the person's Slack name.
+  const decidedBy = d.source === 'slack' ? 'A manager (Slack)' : String(d.by || 'Someone').slice(0, 80);
+  const updated = { ...row, status: d.action === 'approve' ? STATUS.approved : STATUS.rejected, decidedBy, decidedAt: londonStamp(now) };
   return { ok: true, row: updated };
 }
 
