@@ -59,13 +59,18 @@ services:
     security_opt: [no-new-privileges:true]
     mem_limit: 1g
     pids_limit: 512
-    networks: [invoices]
+    # news-private: this n8n also runs the AI news demo's workflows (repo news-demo), which reach that
+    # WordPress site on its internal network.
+    networks: [invoices, news]
 
 networks:
   web:
     external: true
   invoices:
     name: invoices-private
+  news:
+    name: news-private
+    external: true
 
 volumes:
   n8n_data:
